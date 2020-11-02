@@ -19,6 +19,7 @@ export default function (el, options) {
   //   Check edge case for curves
   if (!curve) {
     curve = "ease-in-out";
+    // curve = "cubic-bezier(0.65, 0, 0.35, 1)";
   }
 
   const momoElements = el.querySelectorAll(".momo");
