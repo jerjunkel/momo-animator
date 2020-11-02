@@ -22,8 +22,8 @@ export default function (parent, options) {
   }
 
   const momoElements = parent.querySelectorAll(".momo");
-
   addIntersectionObserver();
+  addFadeIntersection();
 
   function addIntersectionObserver() {
     const observer = new IntersectionObserver((entries, observer) => {
@@ -39,13 +39,34 @@ export default function (parent, options) {
     });
   }
 
+  function addFadeIntersection() {
+    const momoFadeElements = parent.querySelectorAll(
+      `[data-animation^="fade"]`
+    );
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.style.opacity = 0;
+        });
+      },
+      { rootMargin: "20%" }
+    );
+
+    momoFadeElements.forEach((el) => {
+      observer.observe(el);
+    });
+  }
+
   function animate(el) {
     let timer;
     const animation = el.getAttribute("data-animation");
     el.style.animation = `${animation} ${curve} ${speed}ms forwards`;
 
     timer = setTimeout(() => {
-      el.style.animation = "";
+      el.style = "";
       clearTimeout(timer);
     }, parseInt(speed) + 100);
   }
