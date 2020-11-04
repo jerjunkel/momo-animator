@@ -63,11 +63,12 @@ export default function (parent, options) {
   function animate(el) {
     let timer;
     const animation = el.getAttribute("data-animation");
-    el.style.animation = `${animation} ${curve} ${duration}ms forwards`;
+    const delay = parseInt(el.getAttribute("data-animation-delay")) || 0;
+    el.style.animation = `${animation} ${curve} ${duration}ms ${delay}ms forwards`;
 
     timer = setTimeout(() => {
       el.style = "";
       clearTimeout(timer);
-    }, parseInt(duration) + 100);
+    }, parseInt(duration) + 100 + delay);
   }
 }
