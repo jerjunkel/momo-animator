@@ -32,6 +32,10 @@ body {
   color: white;
 }
 
+.section#delay {
+  background-color: #ff993a;
+}
+
 .section__title {
   font-size: 5rem;
 }
