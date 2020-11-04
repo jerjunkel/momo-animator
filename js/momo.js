@@ -16,6 +16,10 @@ export default function (parent, options) {
     duration = "2000";
   }
 
+  if (isNaN(duration)) {
+    throw Error("Duration needs to be an interger value");
+  }
+
   //   Check edge case for curves
   if (!curve) {
     curve = "ease-in-out";
