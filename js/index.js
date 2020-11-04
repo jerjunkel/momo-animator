@@ -1,4 +1,4 @@
 import momo from "./momo.js";
 
 const section = document.querySelector("section");
-momo(document, { speed: "2000", curve: "cubic-bezier(0.65, 0, 0.35, 1)" });
+momo(document, { duration: "2000", curve: "cubic-bezier(0.65, 0, 0.35, 1)" });

@@ -8,12 +8,12 @@ export default function (parent, options) {
     parent = document;
   }
 
-  let { speed, curve } = options;
+  let { duration, curve } = options;
   console.log(options, parent);
 
-  //   Check edge cases for speed option
-  if (!speed) {
-    speed = "2000";
+  //   Check edge cases for duration option
+  if (!duration) {
+    duration = "2000";
   }
 
   //   Check edge case for curves
@@ -30,7 +30,7 @@ export default function (parent, options) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        animate(entry.target, { speed, curve });
+        animate(entry.target, { duration, curve });
       });
     }, {});
 
@@ -63,11 +63,11 @@ export default function (parent, options) {
   function animate(el) {
     let timer;
     const animation = el.getAttribute("data-animation");
-    el.style.animation = `${animation} ${curve} ${speed}ms forwards`;
+    el.style.animation = `${animation} ${curve} ${duration}ms forwards`;
 
     timer = setTimeout(() => {
       el.style = "";
       clearTimeout(timer);
-    }, parseInt(speed) + 100);
+    }, parseInt(duration) + 100);
   }
 }
