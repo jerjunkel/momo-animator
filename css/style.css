@@ -36,8 +36,13 @@ body {
   background-color: #ff993a;
 }
 
+.section#duration {
+  background-color: cornflowerblue;
+}
+
 .section__title {
   font-size: 5rem;
+  text-align: center;
 }
 
 .section__items {

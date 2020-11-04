@@ -64,11 +64,13 @@ export default function (parent, options) {
     let timer;
     const animation = el.getAttribute("data-animation");
     const delay = parseInt(el.getAttribute("data-animation-delay")) || 0;
-    el.style.animation = `${animation} ${curve} ${duration}ms ${delay}ms forwards`;
+    const elDuration =
+      parseInt(el.getAttribute("data-animation-duration")) || duration;
+    el.style.animation = `${animation} ${curve} ${elDuration}ms ${delay}ms forwards`;
 
     timer = setTimeout(() => {
       el.style = "";
       clearTimeout(timer);
-    }, parseInt(duration) + 100 + delay);
+    }, parseInt(elDuration) + 100 + delay);
   }
 }
