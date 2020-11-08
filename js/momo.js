@@ -1,88 +1,60 @@
-export default function (selector, options) {
-  if (typeof selector == "object" && options == undefined) {
-    options = selector;
-    selector = undefined;
+export default class Momo {
+  constructor(selector, options) {
+    this.elements = [];
+    this.findRootElement = (selector) => {
+      const root = document.querySelector(selector);
+      if (!root) throw Error(`No element found with the selector ${selector}`);
+      return root;
+    };
+    this.setup = () => {
+      this.elements = Array.from(this.root.querySelectorAll(".momo"));
+      this.addIntersectionObservers();
+    };
+    this.root = this.findRootElement(selector);
+    this.options = options;
+    this.setup();
   }
-
-  // Root element for momo animations
-  let root;
-
-  // Defaults to the body if no selector is passed in options
-  if (!selector) {
-    root = document.querySelector("body");
-  } else {
-    // Checks for selector type
-    if (typeof selector != "string")
-      throw Error("Selector needs to be a string");
-
-    root = document.querySelector(selector);
-    if (!root) throw Error(`No element found with the selector '${selector}'`);
+  addIntersectionObservers() {
+    //   Observer for all momo elements in parent
+    const animate = (entry) => {
+      let timer;
+      let el = entry.target;
+      const animation = el.getAttribute("data-animation");
+      const delay = parseInt(el.getAttribute("data-animation-delay")) || 0;
+      const duration =
+        parseInt(el.getAttribute("data-animation-duration")) ||
+        this.options.duration ||
+        2000;
+      timer = setTimeout(() => {
+        el.removeAttribute("style");
+        clearTimeout(timer);
+      }, Number(duration) + Number(delay) + 100);
+      el.style.animation = `${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+    };
+    const fadeElements = this.elements.filter((el) => {
+      var _a;
+      return (_a = el.getAttribute("data-animation")) === null || _a === void 0
+        ? void 0
+        : _a.match(/^fade/g);
+    });
+    const fade = (entry) => {
+      const el = entry.target;
+      el.style.opacity = "0";
+    };
+    // Animation observer
+    this.createObserver(this.elements, animate);
+    // Fade element observer
+    this.createObserver(fadeElements, fade, { rootMargin: "20%" });
   }
-
-  let { duration, curve } = options;
-  console.log(options, root);
-
-  // Check edge cases for duration option
-  if (!duration) {
-    duration = "2000";
-  }
-
-  if (isNaN(duration)) {
-    throw Error("Duration needs to be an interger value");
-  }
-
-  // Check edge case for curves
-  if (!curve) {
-    curve = "ease-in-out";
-  }
-
-  const momoElements = root.querySelectorAll(".momo");
-  addIntersectionObserver();
-  addFadeIntersection();
-
-  function addIntersectionObserver() {
+  createObserver(elements, closure, options = {}) {
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-
-        animate(entry.target, { duration, curve });
+        closure(entry);
       });
-    }, {});
-
-    momoElements.forEach((el) => {
+    }, options);
+    elements.forEach((el) => {
       observer.observe(el);
     });
-  }
-
-  function addFadeIntersection() {
-    const momoFadeElements = root.querySelectorAll(`[data-animation^="fade"]`);
-
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.style.opacity = 0;
-        });
-      },
-      { rootMargin: "20%" }
-    );
-
-    momoFadeElements.forEach((el) => {
-      observer.observe(el);
-    });
-  }
-
-  function animate(el) {
-    let timer;
-    const animation = el.getAttribute("data-animation");
-    const delay = parseInt(el.getAttribute("data-animation-delay")) || 0;
-    const elDuration =
-      parseInt(el.getAttribute("data-animation-duration")) || duration;
-    el.style.animation = `${animation} ${curve} ${elDuration}ms ${delay}ms forwards`;
-
-    timer = setTimeout(() => {
-      el.style = "";
-      clearTimeout(timer);
-    }, parseInt(elDuration) + 100 + delay);
   }
 }
