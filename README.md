@@ -4,8 +4,6 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ## Usage
 
----
-
 A simple use case where an element with the class `container` is the parent for all the elements that needs to be animated.
 
 ```html
@@ -26,19 +24,13 @@ const momo = new Momo(".container", {
 
 ## API
 
----
-
 - Momo("selector", options)
 
 ## Selector
 
----
-
 The selector should the parent of the elements that will be animated
 
 ## Options
-
----
 
 - `duration`: Duration of animation in ms (Should be number)
 - `curve`: The animation timing function. Feel free to use the default ease or a custom bezier path
