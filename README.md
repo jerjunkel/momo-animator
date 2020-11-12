@@ -32,5 +32,19 @@ The selector should the parent of the elements that will be animated
 
 ## Options
 
-- `duration`: Duration of animation in ms (Should be number)
-- `curve`: The animation timing function. Feel free to use the default ease or a custom bezier path
+These options will be applied to all `momo` elements within the parent selector. For individual use element data attributes
+
+- `duration`: Duration of animation in ms (Should be number).
+- `curve`: The animation timing function. Feel free to use the default ease or a custom bezier path.
+- `delay`: Delay in ms that will be applied to animation.
+
+## Data Attributes
+
+- `animation`: The name of the animation to used on the element.
+- `animation-duration`: Animatiion duration in milliseconds.
+- `animation-delay`: Animaition delay in milliseconds.
+
+## Animations
+
+- **Fade**: `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`
+- **Slide**: `slide-in`, `slide-in-up`, `slide-in-down`, `slide-in-right`, `slide-in-left`
