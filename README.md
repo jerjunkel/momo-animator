@@ -24,7 +24,7 @@ const momo = new Momo(".container", {
 
 ## API
 
-- Momo("selector", options)
+- `Momo(selector, options)`
 
 ## Selector
 
