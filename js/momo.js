@@ -10,6 +10,7 @@ export default class Momo {
         this.setup = () => {
             this.elements = Array.from(this.root.querySelectorAll(".momo"));
             this.addIntersectionObservers();
+            this.hideElementsForFadeAnimation();
         };
         this.root = this.findRootElement(selector);
         this.options = options;
@@ -31,15 +32,16 @@ export default class Momo {
             }, Number(duration) + Number(delay) + 100);
             el.style.animation = `${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
         };
-        const fadeElements = this.elements.filter((el) => { var _a; return (_a = el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g); });
-        const fade = (entry) => {
-            const el = entry.target;
-            el.style.opacity = "0";
-        };
         // Animation observer
         this.createObserver(this.elements, animate);
-        // Fade element observer
-        this.createObserver(fadeElements, fade, { rootMargin: "20%" });
+    }
+    hideElementsForFadeAnimation() {
+        this.elements.forEach((el) => {
+            var _a;
+            if ((_a = el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
+                el.style.opacity = "0";
+            }
+        });
     }
     createObserver(elements, closure, options = {}) {
         const observer = new IntersectionObserver((entries, observer) => {
