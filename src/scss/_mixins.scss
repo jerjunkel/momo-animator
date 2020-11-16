@@ -1,0 +1,15 @@
+// Directions mixin
+@mixin animation-direction($direction) {
+  @if $direction == "right" {
+    transform: translateX($transition-offset);
+  }
+  @if $direction == "left" {
+    transform: translateX(-#{$transition-offset});
+  }
+  @if $direction == "up" {
+    transform: translateY($transition-offset);
+  }
+  @if $direction == "down" {
+    transform: translateY(-#{$transition-offset});
+  }
+}

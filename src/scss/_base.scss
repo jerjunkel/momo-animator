@@ -1,0 +1,58 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 2rem 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10rem auto;
+  padding: 4rem 0;
+  width: 80vw;
+  height: 90vh;
+  background-color: rgb(197, 237, 255);
+
+  &#fade {
+    background-color: rgb(122, 0, 122);
+    color: white;
+  }
+
+  &#delay {
+    background-color: rgb(255, 153, 58);
+  }
+
+  &#duration {
+    background-color: cornflowerblue;
+  }
+
+  &__title {
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
+    p {
+      font-size: 2.5rem;
+      margin: 2rem 0;
+    }
+  }
+}
