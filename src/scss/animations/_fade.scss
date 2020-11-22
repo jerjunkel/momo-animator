@@ -1,4 +1,4 @@
-@keyframes fade-in {
+@keyframes momo-fade-in {
   from {
     opacity: 0;
   }
@@ -9,7 +9,7 @@
 }
 
 @each $direction in $animation-directions {
-  @keyframes fade-in-#{$direction} {
+  @keyframes momo-fade-in-#{$direction} {
     from {
       opacity: 0;
       @include animation-direction($direction);

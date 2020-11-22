@@ -1,5 +1,5 @@
 @each $direction in $animation-directions {
-  @keyframes slide-in-#{$direction} {
+  @keyframes momo-slide-in-#{$direction} {
     from {
       @include animation-direction($direction);
     }
