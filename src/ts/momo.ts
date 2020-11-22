@@ -46,7 +46,7 @@ export default class Momo {
         clearTimeout(timer);
       }, Number(duration) + Number(delay) + 100);
 
-      el.style.animation = `${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+      el.style.animation = `momo-${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
     };
 
     // Animation observer
