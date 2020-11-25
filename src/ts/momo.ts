@@ -24,6 +24,7 @@ export default class Momo {
 
   private setup = () => {
     this.elements = Array.from(this.root.querySelectorAll(".momo"));
+    this.addAnimationToStyleSheet();
     this.addIntersectionObservers();
     this.hideElementsForFadeAnimation();
   };
@@ -77,5 +78,104 @@ export default class Momo {
     elements.forEach((el) => {
       observer.observe(el);
     });
+  }
+
+  private addAnimationToStyleSheet() {
+    const style = document.createElement("style");
+    style.title = "momo-styles";
+
+    document.head.appendChild(style);
+
+    // insert CSS Rule
+    style.innerHTML = `
+    @keyframes momo-slide-in-right {
+      from {
+        transform: translateX(50%);
+      }
+      to {
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-slide-in-left {
+      from {
+        transform: translateX(-50%);
+      }
+      to {
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-slide-in-up {
+      from {
+        transform: translateY(50%);
+      }
+      to {
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-slide-in-down {
+      from {
+        transform: translateY(-50%);
+      }
+      to {
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes momo-fade-in-right {
+      from {
+        opacity: 0;
+        transform: translateX(50%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-fade-in-left {
+      from {
+        opacity: 0;
+        transform: translateX(-50%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(50%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+    
+    @keyframes momo-fade-in-down {
+      from {
+        opacity: 0;
+        transform: translateY(-50%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+`;
   }
 }
