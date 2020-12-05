@@ -13,4 +13,26 @@ export default class Momo {
             curve = "linear";
         Momo.options = { curve, duration, delay };
     }
+    static animateElement(selector, options) {
+        const el = document.querySelector(selector);
+        if (!el)
+            throw Error(`No element found with selector ${selector}`);
+        const validOptions = MomoOptionsChecker.check(options);
+        return new MomoAnimator(el, validOptions);
+    }
+}
+class MomoAnimator {
+    constructor(el, options) { }
+}
+class MomoOptionsChecker {
+    static check(options) {
+        let { duration, delay, curve } = options;
+        if (!duration)
+            duration = Momo.options.duration;
+        if (!delay)
+            delay = Momo.options.delay;
+        if (!curve)
+            curve = Momo.options.curve;
+        return { curve, duration, delay };
+    }
 }
