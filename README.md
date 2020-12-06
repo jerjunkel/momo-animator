@@ -57,8 +57,6 @@ const barAnimatorGroup = Momo.animateGroup(".container", {
 });
 ```
 
-# API
-
 ## Methods and Classes
 
 ### `Momo.init(options)`
@@ -71,37 +69,37 @@ Iniatilizes Momo object with global options.
 
 ### `Momo.animate(selector, options)`
 
-Iniatilizes Momo object with global options.
+Animates a single Momo element.
 
 **Arguments:**
 | Name | Type | Description |
 | ------- | ------ | ------------------------------------- |
-| `selector` | string | The CSS selector used to find the HTML element|
+| `selector` | string | The CSS selector used to find the HTML element.|
 | `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
 
 **Returns:**
 | Type | Description  
 | ------ | ------------------------------------- |
-| `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements |
+| `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements. |
 
 ### `Momo.animateGroup(selector, options)`
 
-Iniatilizes Momo object with global options.
+Animates a group of Momo elements.
 
 **Arguments:**
 | Name | Type | Description |
 | ------- | ------ | ------------------------------------- |
-| `selector` | string | The CSS selector used to find the parent element of whos children needs to be animated|
+| `selector` | string | The CSS selector used to find the parent element of whos children needs to be animated.|
 | `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
 
 **Returns:**
 | Type | Description  
 | ------ | ------------------------------------- |
-| `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements |
+| `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements. |
 
 ## Selector
 
-The selector should the parent of the elements that will be animated
+The selector should the parent of the elements that will be animated.
 
 ## MomoOptions <a name="momo-options"></a>
 
@@ -110,7 +108,7 @@ These options will be applied to all `momo` elements within the parent selector.
 **Arguments:**
 | Name | Type | Description |
 | ------- | ------ | ------------------------------------- |
-| `duration` | number |Duration of animation in ms|
+| `duration` | number |Duration of animation in milliseconds. .|
 | `delay` | number | Delay in ms that will be applied to animation. |
 | `curve `| string | The animation timing function. Feel free to use the default ease or a custom bezier path. |
 
