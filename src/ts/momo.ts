@@ -21,6 +21,8 @@ export default class Momo {
   static animateElement(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
+    if (!el.classList.contains("momo"))
+      throw Error(`Element with selector ${selector} is missing Momo class`);
 
     const validOptions =
       options == null ? Momo.options : MomoOptionsChecker.check(options!);
