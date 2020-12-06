@@ -2,13 +2,9 @@
 
 ## Description
 
----
-
 Momo is a simple javascript animation library that animates elements once they are scrolled into view.
 
 ## Getting Started
-
----
 
 Before using Momo animator, you will need to iniatialize it with your own global `MomoOptions` or use Momo's default properties.
 
@@ -24,8 +20,6 @@ Momo.init();
 ```
 
 ## Usage
-
----
 
 ### Animating a single element
 
