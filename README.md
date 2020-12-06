@@ -25,7 +25,7 @@ Momo.init();
 
 ### Animating a single element
 
-To animate a single element, pass the selector of the element and use the `animate` function, along with your `MomoOptions`.
+To animate a single element, pass the selector of the element and use the `animate` function, along with your [`MomoOptions`](#momo-options).
 
 ```html
 <h2 id="fooElement" class="momo" data-animation="fade-in-right">
