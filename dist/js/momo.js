@@ -45,6 +45,8 @@ class MomoAnimator {
             let timer;
             let el = entry.target;
             const animation = el.getAttribute("data-animation");
+            if (!animation)
+                return; // Exit if no animation is set
             const delay = Number(el.getAttribute("data-animation-delay")) ||
                 this.options.delay;
             const duration = Number(el.getAttribute("data-animation-duration")) ||
