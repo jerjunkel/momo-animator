@@ -17,12 +17,23 @@ export default class Momo {
         const el = document.querySelector(selector);
         if (!el)
             throw Error(`No element found with selector ${selector}`);
-        const validOptions = MomoOptionsChecker.check(options);
+        const validOptions = options == null ? Momo.options : MomoOptionsChecker.check(options);
         return new MomoAnimator(el, validOptions);
+    }
+    static animateElementsIn(selector, options) {
+        const el = document.querySelector(selector);
+        if (!el)
+            throw Error(`No element found with selector ${selector}`);
+        const momoElements = Array.from(el.querySelectorAll(".momo"));
+        const validOptions = options == null ? Momo.options : MomoOptionsChecker.check(options);
+        return new MomoAnimator(momoElements, validOptions);
     }
 }
 class MomoAnimator {
-    constructor(el, options) { }
+    constructor(el, options) {
+        console.log(el);
+        console.log(options);
+    }
 }
 class MomoOptionsChecker {
     static check(options) {
