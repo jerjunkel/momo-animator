@@ -111,8 +111,6 @@ The selector should the parent of the elements that will be animated
 
 ## MomoOptions <a name="momo-options"></a>
 
----
-
 These options will be applied to all `momo` elements within the parent selector. For individual use element data attributes
 
 **Arguments:**
@@ -124,8 +122,6 @@ These options will be applied to all `momo` elements within the parent selector.
 
 ## Data Attributes
 
----
-
 Data attributes that can be added to HTML elements.
 
 | Name                 | Type   | Description                                                                     |
@@ -136,10 +132,8 @@ Data attributes that can be added to HTML elements.
 
 ## Animations <a name="animations"></a>
 
----
-
 Animations that can be added to an element
 |Style | Directions|
 |-------| ----------|
-|**Fade**| `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`|
-|**Slide**| `slide-in`, `slide-in-up`, `slide-in-down`, `slide-in-right`, `slide-in-left`|
+|_Fade_| `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`|
+|_Slide_| `slide-in`, `slide-in-up`, `slide-in-down`, `slide-in-right`, `slide-in-left`|
