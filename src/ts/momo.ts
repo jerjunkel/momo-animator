@@ -60,10 +60,11 @@ class MomoAnimator {
   }
 
   private setup() {
-    this.addIntersectionObservers();
+    this.addIntersectionObserver();
+    this.prepForFadeAnimation();
   }
 
-  private addIntersectionObservers() {
+  private addIntersectionObserver() {
     //   Observer for all momo elements in parent
     const animate = (entry: IntersectionObserverEntry) => {
       let timer: number;
@@ -107,6 +108,20 @@ class MomoAnimator {
     elements.forEach((el) => {
       observer.observe(el);
     });
+  }
+
+  private prepForFadeAnimation() {
+    if (Array.isArray(this.el)) {
+      this.el.forEach((el) => {
+        if (el.getAttribute("data-animation")?.match(/^fade/g)) {
+          el.style.opacity = "0";
+        }
+      });
+    } else {
+      if (this.el.getAttribute("data-animation")?.match(/^fade/g)) {
+        this.el.style.opacity = "0";
+      }
+    }
   }
 }
 

@@ -36,9 +36,10 @@ class MomoAnimator {
         this.setup();
     }
     setup() {
-        this.addIntersectionObservers();
+        this.addIntersectionObserver();
+        this.prepForFadeAnimation();
     }
-    addIntersectionObservers() {
+    addIntersectionObserver() {
         //   Observer for all momo elements in parent
         const animate = (entry) => {
             let timer;
@@ -72,6 +73,22 @@ class MomoAnimator {
         elements.forEach((el) => {
             observer.observe(el);
         });
+    }
+    prepForFadeAnimation() {
+        var _a;
+        if (Array.isArray(this.el)) {
+            this.el.forEach((el) => {
+                var _a;
+                if ((_a = el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
+                    el.style.opacity = "0";
+                }
+            });
+        }
+        else {
+            if ((_a = this.el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
+                this.el.style.opacity = "0";
+            }
+        }
     }
 }
 class MomoOptionsChecker {
