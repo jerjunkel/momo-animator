@@ -4,7 +4,7 @@
 
 ## Description
 
-Momo is a simple javascript animation library that animates elements once they are scrolled into view.
+Momo is a simple javascript animation library that animates elements once they are scrolled into view. Named after the flying lemur from [Avatar: The Last Airbender](https://en.wikipedia.org/wiki/Avatar:_The_Last_Airbender)
 
 ## Getting Started
 
