@@ -1,6 +1,6 @@
 # Momo Animator
 
-<img src="momo-image.png" style="width: 300px; margin: 0 auto"></img>
+<img src="momo-image.png" style="width: 200px; margin: 0 auto"></img>
 
 ## Description
 
