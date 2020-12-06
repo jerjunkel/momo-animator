@@ -31,8 +31,47 @@ export default class Momo {
 }
 class MomoAnimator {
     constructor(el, options) {
-        console.log(el);
-        console.log(options);
+        this.el = el;
+        this.options = options;
+        this.setup();
+    }
+    setup() {
+        this.addIntersectionObservers();
+    }
+    addIntersectionObservers() {
+        //   Observer for all momo elements in parent
+        const animate = (entry) => {
+            let timer;
+            let el = entry.target;
+            const animation = el.getAttribute("data-animation");
+            const delay = Number(el.getAttribute("data-animation-delay")) ||
+                this.options.delay;
+            const duration = Number(el.getAttribute("data-animation-duration")) ||
+                this.options.duration;
+            timer = setTimeout(() => {
+                el.removeAttribute("style");
+                clearTimeout(timer);
+            }, duration + delay + 100);
+            el.style.animation = `momo-${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+        };
+        // Animation observer
+        this.createObserver(this.el, animate);
+    }
+    createObserver(elements, closure, options = {}) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting)
+                    return;
+                closure(entry);
+                observer.unobserve(entry.target);
+            });
+        }, options);
+        // Check for more than one element
+        if (!Array.isArray(elements))
+            return observer.observe(elements);
+        elements.forEach((el) => {
+            observer.observe(el);
+        });
     }
 }
 class MomoOptionsChecker {

@@ -34,9 +34,9 @@ export default class Momo {
   ): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
-    const momoElements = Array.from(el!.querySelectorAll(".momo")) as [
-      HTMLElement
-    ];
+    const momoElements = Array.from(
+      el!.querySelectorAll(".momo")
+    ) as HTMLElement[];
 
     const validOptions =
       options == null ? Momo.options : MomoOptionsChecker.check(options!);
@@ -50,9 +50,63 @@ export default class Momo {
 }
 
 class MomoAnimator {
-  constructor(el: HTMLElement | [HTMLElement], options: MomoOptions) {
-    console.log(el);
-    console.log(options);
+  private el: HTMLElement | HTMLElement[];
+  private options: MomoOptions;
+
+  constructor(el: HTMLElement | HTMLElement[], options: MomoOptions) {
+    this.el = el;
+    this.options = options;
+    this.setup();
+  }
+
+  private setup() {
+    this.addIntersectionObservers();
+  }
+
+  private addIntersectionObservers() {
+    //   Observer for all momo elements in parent
+    const animate = (entry: IntersectionObserverEntry) => {
+      let timer: number;
+      let el = entry.target as HTMLElement;
+      const animation = el.getAttribute("data-animation");
+      const delay =
+        Number(el.getAttribute("data-animation-delay") as string) ||
+        this.options.delay;
+      const duration =
+        Number(el.getAttribute("data-animation-duration") as string) ||
+        this.options.duration;
+
+      timer = setTimeout(() => {
+        el.removeAttribute("style");
+        clearTimeout(timer);
+      }, duration + delay + 100);
+
+      el.style.animation = `momo-${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+    };
+
+    // Animation observer
+    this.createObserver(this.el, animate);
+  }
+
+  private createObserver(
+    elements: HTMLElement | HTMLElement[],
+    closure: (entry: IntersectionObserverEntry) => void,
+    options: object = {}
+  ) {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        closure(entry);
+        observer.unobserve(entry.target);
+      });
+    }, options);
+
+    // Check for more than one element
+    if (!Array.isArray(elements)) return observer.observe(elements);
+
+    elements.forEach((el) => {
+      observer.observe(el);
+    });
   }
 }
 
