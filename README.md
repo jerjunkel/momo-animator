@@ -8,7 +8,7 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ## Getting Started
 
-Before using Momo animator, you will need to iniatialize it with your own global `MomoOptions` or use Momo's default properties.
+Before using Momo animator, you will need to iniatialize it with your own global [`MomoOptions`](#momo-options) or use Momo's default properties.
 
 ```javascript
 // Initalizing with your custom properties
@@ -42,7 +42,7 @@ const fooAnimator = Momo.animate("#fooElement", {
 
 ### Animating a group of elements
 
-To animate a group of elements, pass the parent selector as the first argument and use the `animateGroup` function, along with your your options `MomoOptions`.
+To animate a group of elements, pass the parent selector as the first argument and use the `animateGroup` function, along with your your options [`MomoOptions`](#momo-options).
 
 ```html
 <div class="container">
@@ -129,5 +129,5 @@ Data attributes that can be added to HTML elements.
 Animations that can be added to an element
 |Style | Directions|
 |-------| ----------|
-|_Fade_| `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`|
+|_Fade_ | `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`|
 |_Slide_| `slide-in`, `slide-in-up`, `slide-in-down`, `slide-in-right`, `slide-in-left`|
