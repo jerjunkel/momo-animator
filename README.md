@@ -1,5 +1,7 @@
 # Momo Animator
 
+<img src="momo-image.png" style="width: 300px; margin: 0 auto"></img>
+
 ## Description
 
 Momo is a simple javascript animation library that animates elements once they are scrolled into view.
