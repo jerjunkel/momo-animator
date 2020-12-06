@@ -119,8 +119,8 @@ Data attributes that can be added to HTML elements.
 | Name                 | Type   | Description                                                                                                   |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
 | `animation`          | string | The name of the animation to used on the element. This attribute is `required`. See [Animations](#animations) |
-| `animation-duration` | number | Animatiion duration in milliseconds.                                                                          |
-| `animation-delay`    | number | nimaition delay in milliseconds.                                                                              |
+| `animation-duration` | number | Animation duration in milliseconds.                                                                           |
+| `animation-delay`    | number | Animation delay in milliseconds.                                                                              |
 
 ## Animations <a name="animations"></a>
 
