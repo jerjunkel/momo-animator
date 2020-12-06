@@ -9,5 +9,4 @@ Momo.init({
 });
 // console.log(Momo.options);
 
-const slide = Momo.animateElement("#slide");
-const body = Momo.animateElementsIn("body", { duration: 1200 });
+const body = Momo.animateGroup("body", { duration: 1200 });

@@ -18,7 +18,7 @@ export default class Momo {
     Momo.options = { curve, duration, delay };
   }
 
-  static animateElement(selector: string, options?: MomoOptions): MomoAnimator {
+  static animate(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     if (!el.classList.contains("momo"))
@@ -30,10 +30,7 @@ export default class Momo {
     return new MomoAnimator(el, validOptions);
   }
 
-  static animateElementsIn(
-    selector: string,
-    options?: MomoOptions
-  ): MomoAnimator {
+  static animateGroup(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     const momoElements = Array.from(
