@@ -32,7 +32,7 @@ To animate a single element, pass the selector of the element and use the `anima
 ```
 
 ```js
-const fooGroup = Momo.animate("#fooElement", {
+const fooAnimator = Momo.animate("#fooElement", {
   duration: 2500,
   delay: 1000,
 });
@@ -52,7 +52,7 @@ To animate a group of elements, pass the parent selector as the first argument a
 ```
 
 ```js
-const fooGroup = Momo.animateGroup(".container", {
+const barAnimatorGroup = Momo.animateGroup(".container", {
   duration: 1200,
 });
 ```
