@@ -61,11 +61,11 @@ const barAnimatorGroup = Momo.animateGroup(".container", {
 
 ### `Momo.init(options)`
 
-Iniatilizes Momo object with global options.
+Iniatilizes Momo object by setting the global animation options. If no optioins are provided, it will use the default options. Calling this method more than once will overwrite the previous settings.
 
-| Name      | Type   | Description                           |
-| --------- | ------ | ------------------------------------- |
-| `options` | object | See options section for more details. |
+| Name      | Type   | Description                                                  |
+| --------- | ------ | ------------------------------------------------------------ |
+| `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
 
 ### `Momo.animate(selector, options)`
 
@@ -103,7 +103,7 @@ The selector should the parent of the elements that will be animated.
 
 ## MomoOptions <a name="momo-options"></a>
 
-These options will be applied to all `momo` elements within the parent selector. For individual use element data attributes
+An object that encapsulates the animation properties to be used on a momo element.
 
 **Arguments:**
 | Name | Type | Description |
@@ -116,11 +116,11 @@ These options will be applied to all `momo` elements within the parent selector.
 
 Data attributes that can be added to HTML elements.
 
-| Name                 | Type   | Description                                                                     |
-| -------------------- | ------ | ------------------------------------------------------------------------------- |
-| `animation`          | string | The name of the animation to used on the element. See [Animations](#animations) |
-| `animation-duration` | number | Animatiion duration in milliseconds.                                            |
-| `animation-delay`    | number | nimaition delay in milliseconds.                                                |
+| Name                                                      | Type   | Description                                                                     |
+| --------------------------------------------------------- | ------ | ------------------------------------------------------------------------------- |
+| `animation` <span style="color:#e11800">(required)</span> | string | The name of the animation to used on the element. See [Animations](#animations) |
+| `animation-duration`                                      | number | Animatiion duration in milliseconds.                                            |
+| `animation-delay`                                         | number | nimaition delay in milliseconds.                                                |
 
 ## Animations <a name="animations"></a>
 
