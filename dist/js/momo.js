@@ -1,5 +1,4 @@
-"use strict";
-class Momo {
+export default class Momo {
     constructor() {
         throw Error("Use the init method");
     }
@@ -109,6 +108,6 @@ class MomoOptionsChecker {
     }
 }
 // Add Momo to window namespace
-(function () {
-    window.momo = Momo;
-})();
+// (function () {
+//   (window as any).momo = Momo;
+// })();

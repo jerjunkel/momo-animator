@@ -4,7 +4,7 @@ type MomoOptions = {
   curve: string;
 };
 
-class Momo {
+export default class Momo {
   static options: MomoOptions;
   static init(
     options: MomoOptions = { duration: 1000, delay: 0, curve: "linear" }
@@ -136,6 +136,6 @@ class MomoOptionsChecker {
   }
 }
 // Add Momo to window namespace
-(function () {
-  (window as any).momo = Momo;
-})();
+// (function () {
+//   (window as any).momo = Momo;
+// })();
