@@ -8,7 +8,16 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ## Getting Started
 
-Before using Momo animator, you will need to iniatialize it with your own global [`MomoOptions`](#momo-options) or use Momo's default properties.
+### Add Momo using a script tag on your page.
+
+Momo will be added to the `window` namespace as a property named `momo` and will be accessible on all pages.
+
+```html
+<script src="/path/to/momo.js"></script>
+```
+
+Before using Momo animator, you will need to iniatialize it with your own global [`MomoOptions`](#momo-options)
+or use Momo's default properties. You will only need to do this once.
 
 ```javascript
 // Initalizing with your custom properties
@@ -98,10 +107,6 @@ Animates a group of Momo elements.
 | Type | Description  
 | ------ | ------------------------------------- |
 | `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements. |
-
-## Selector
-
-The selector should the parent of the elements that will be animated.
 
 ## MomoOptions <a name="momo-options"></a>
 
