@@ -89,16 +89,13 @@
         </p>
       </div>
     </section>
-    <!-- <script src="/dist/js/momo.js"></script> -->
-    <script src="/dist/js/index.js" type="module" onload="initMomo()"></script>
+    <script src="/dist/bundle.js"></script>
     <script>
-      const initMomo = () => {
-        momo.init({
-          duration: 2000,
-          curve: "cubic-bezier(0.65, 0, 0.35, 1)",
-        });
-        const body = momo.animateGroup("body");
-      };
+      Momo.init({
+        duration: 2000,
+        curve: "cubic-bezier(0.65, 0, 0.35, 1)",
+      });
+      const body = Momo.animateGroup("body");
     </script>
   </body>
 </html>
