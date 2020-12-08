@@ -1,0 +1,22 @@
+{
+  "name": "momo-animator",
+  "version": "0.1.0",
+  "description": "A javascript animation library",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerjunkel/momo-animator.git"
+  },
+  "author": "Jeramaine Kelly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerjunkel/momo-animator/issues"
+  },
+  "homepage": "https://github.com/jerjunkel/momo-animator#readme"
+}
