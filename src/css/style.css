@@ -1,0 +1,148 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 2rem 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10rem auto;
+  padding: 4rem 0;
+  width: 80vw;
+  height: 90vh;
+  background-color: #c5edff;
+}
+
+.section#fade {
+  background-color: #7a007a;
+  color: white;
+}
+
+.section#delay {
+  background-color: #ff993a;
+}
+
+.section#duration {
+  background-color: cornflowerblue;
+}
+
+.section__title {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.section__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.section__items p {
+  font-size: 2.5rem;
+  margin: 2rem 0;
+}
+
+@keyframes momo-slide-in-right {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-slide-in-left {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-slide-in-up {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-slide-in-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes momo-fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes momo-fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -113,10 +113,6 @@
             return { curve, duration, delay };
         }
     }
-    // Add Momo to window namespace
-    // (function () {
-    //   (window as any).momo = Momo;
-    // })();
 
     return Momo;
 
