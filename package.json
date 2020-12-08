@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "prebuild": "rm -rf /dist",
+    "prebuild": "rm -rf dist",
     "build": "rollup -c"
   },
   "repository": {
