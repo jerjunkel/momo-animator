@@ -10,7 +10,7 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ### Add Momo using a script tag on your page.
 
-Momo will be added to the `window` namespace as a property named `momo` and will be accessible on all pages.
+Momo will be added to the `window` namespace as a property named `Momo` and will be accessible on all pages.
 
 ```html
 <script src="/path/to/momo.js"></script>
