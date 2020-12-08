@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/jerjunkel/momo-animator/issues"
   },
-  "homepage": "https://github.com/jerjunkel/momo-animator#readme"
+  "homepage": "https://github.com/jerjunkel/momo-animator#readme",
+  "devDependencies": {
+    "rollup": "^2.34.2"
+  }
 }
