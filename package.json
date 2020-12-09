@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jerjunkel/momo-animator#readme",
   "devDependencies": {
+    "jest": "^26.6.3",
     "rollup": "^2.34.2"
   }
 }
