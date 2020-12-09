@@ -28,7 +28,11 @@ export default class Momo {
         if (!el)
             throw Error(`No element found with selector ${selector}`);
         const momoElements = Array.from(el.querySelectorAll(".momo"));
-        const validOptions = options == null ? Momo.options : MomoOptionsChecker.check(options);
+        let validOptions = options == null ? Momo.options : MomoOptionsChecker.check(options);
+        if (options === null || options === void 0 ? void 0 : options.staggerBy) {
+            const staggerBy = options === null || options === void 0 ? void 0 : options.staggerBy;
+            validOptions = Object.assign(Object.assign({}, validOptions), { staggerBy });
+        }
         return new MomoAnimator(momoElements, validOptions);
     }
 }

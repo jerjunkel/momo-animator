@@ -34,8 +34,13 @@ export default class Momo {
       el!.querySelectorAll(".momo")
     ) as HTMLElement[];
 
-    const validOptions =
+    let validOptions =
       options == null ? Momo.options : MomoOptionsChecker.check(options!);
+
+    if (options?.staggerBy) {
+      const staggerBy = options?.staggerBy;
+      validOptions = { ...validOptions, staggerBy };
+    }
 
     return new MomoAnimator(momoElements, validOptions);
   }

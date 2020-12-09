@@ -7,6 +7,10 @@ export default class MomoAnimator {
     setup() {
         this.addIntersectionObserver();
         this.prepForFadeAnimation();
+        if (this.options.staggerBy) {
+            const offset = this.options.staggerBy;
+            this.prepForStagger(offset);
+        }
     }
     addIntersectionObserver() {
         //   Observer for all momo elements in parent
@@ -58,6 +62,17 @@ export default class MomoAnimator {
         else {
             if ((_a = this.el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
                 this.el.style.opacity = "0";
+            }
+        }
+    }
+    prepForStagger(offset) {
+        if (Array.isArray(this.el)) {
+            let count = 0;
+            for (let el of this.el) {
+                if (el.hasAttribute("data-animation-delay"))
+                    continue;
+                el.setAttribute("data-animation-delay", String(count * offset));
+                count++;
             }
         }
     }
