@@ -4,98 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Momo Animations</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
+    <script src="/dist/momo.umd.js"></script>
   </head>
   <body>
-    <section id="slide" class="section">
-      <h1 class="section__title momo" data-animation="slide-in-right">
-        Slide In Animations
-      </h1>
-      <div class="section__items">
-        <p class="momo" data-animation="slide-in-right">Slide In From Right</p>
-        <p class="momo" data-animation="slide-in-left">Slide In From Left</p>
-        <p class="momo" data-animation="slide-in-up">Slide In From Bottom</p>
-        <p class="momo" data-animation="slide-in-down">Slide In From Top</p>
+    <header class="header">
+      <nav class="nav">
+        <ul class="nav__links links">
+          <li class="nav__link">Page 1</li>
+          <li class="nav__link">Page 2</li>
+          <li class="nav__link">Page 3</li>
+        </ul>
+      </nav>
+      <div class="header__content">
+        <div class="header__text">
+          <h1 class="header__cta momo" data-animation="fade-in-right">
+            Come try Momo Animations
+          </h1>
+          <p
+            class="header__description momo"
+            data-animation="fade-in-right"
+            data-animation-delay="200"
+          >
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            corrupti nisi reprehenderit, illo quis voluptate placeat eum. Magni,
+            fugit. Labore architecto obcaecati enim, eius nemo ipsam nisi.
+            Voluptates, non illum.
+          </p>
+          <a
+            href=""
+            class="btn btn__primary momo"
+            data-animation="fade-in-up"
+            data-animation-delay="500"
+            >Get Momo</a
+          >
+        </div>
+        <img
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d57c2b3-8ae8-469d-bad1-1e90c5cef95f/d17cyfq-5ec30536-3a28-4291-98a8-580aba9d32f4.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWQ1N2MyYjMtOGFlOC00NjlkLWJhZDEtMWU5MGM1Y2VmOTVmXC9kMTdjeWZxLTVlYzMwNTM2LTNhMjgtNDI5MS05OGE4LTU4MGFiYTlkMzJmNC5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.MSAcPwPyiznPU4Ab9YsVIQu4Bkpi5e9WQ9LchS6akRM"
+          alt="momo avatar image"
+          class="header__img momo"
+          data-animation="fade-in"
+        />
       </div>
-    </section>
-    <section id="fade" class="section">
-      <h1 class="section__title momo" data-animation="fade-in">
-        Fade In Animations
-      </h1>
-      <div class="section__items">
-        <p class="momo" data-animation="fade-in-right">Fade In From Right</p>
-        <p class="momo" data-animation="fade-in-left">Fade In From Left</p>
-        <p class="momo" data-animation="fade-in-up">Fade In From Bottom</p>
-        <p class="momo" data-animation="fade-in-down">Fade In From Top</p>
-      </div>
-    </section>
-    <section id="delay" class="section">
-      <h1 class="section__title momo" data-animation="fade-in">
-        Fade In with Delay
-      </h1>
-      <div class="section__items">
-        <p
-          class="momo"
-          data-animation="fade-in-right"
-          data-animation-delay="2000"
-        >
-          Fade In From Right
-        </p>
-        <p
-          class="momo"
-          data-animation="fade-in-left"
-          data-animation-delay="100"
-        >
-          Fade In From Left
-        </p>
-        <p class="momo" data-animation="fade-in-up" data-animation-delay="800">
-          Fade In From Bottom
-        </p>
-        <p
-          class="momo"
-          data-animation="fade-in-down"
-          data-animation-delay="1000"
-        >
-          Fade In From Top
-        </p>
-      </div>
-    </section>
-    <section id="duration" class="section">
-      <h1 class="section__title momo" data-animation="slide-in-right">
-        Slide In With Duration
-      </h1>
-      <div class="section__items">
-        <p
-          class="momo"
-          data-animation="slide-in-right"
-          data-animation-duration="300"
-        >
-          Slide In From Right
-        </p>
-        <p
-          class="momo"
-          data-animation="slide-in-left"
-          data-animation-duration="3000"
-        >
-          Slide In From Left
-        </p>
-        <p class="momo" data-animation="slide-in-up">Slide In From Bottom</p>
-        <p
-          class="momo"
-          data-animation="slide-in-down"
-          data-animation-duration="5000"
-        >
-          Slide In From Top
-        </p>
-      </div>
-    </section>
-    <script src="/dist/momo.umd.js"></script>
+    </header>
+    <div class="container"></div>
+
     <script>
       Momo.init({
-        duration: 2000,
-        curve: "cubic-bezier(0.65, 0, 0.35, 1)",
+        duration: 1000,
       });
-      const body = Momo.animateGroup("body");
+
+      const momoImage = Momo.animate(".header__img");
+
+      const headerText = Momo.animateGroup(".header__text", {
+        curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+      });
     </script>
   </body>
 </html>
