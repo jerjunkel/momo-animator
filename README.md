@@ -118,6 +118,7 @@ An object that encapsulates the animation properties to be used on a momo elemen
 | `duration` | number |Duration of animation in milliseconds. .|
 | `delay` | number | Delay in ms that will be applied to animation. |
 | `curve `| string | The animation timing function. Feel free to use the default ease or a custom bezier path. |
+| `staggerBy `| number | An offset used to delay each element animation within a group. |
 
 ## Data Attributes
 
