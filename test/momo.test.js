@@ -1,12 +1,21 @@
-import Momo from "../dist/js/momo.js";
+import { TestScheduler } from "jest";
+import Momo from "../src/js/Momo";
 
-const section = document.querySelector("section");
-// momo({ duration: "2000", curve: "cubic-bezier(0.65, 0, 0.35, 1)" });
-
-Momo.init({
-  duration: 2000,
-  curve: "cubic-bezier(0.65, 0, 0.35, 1)",
+describe("Momo global options", () => {
+  test("setting default options", () => {
+    Momo.init();
+    expect(Momo.options.duration).toBe(1000);
+    expect(Momo.options.curve).toBe("linear");
+    expect(Momo.options.delay).toBe(0);
+  });
+  test("setting user options", () => {
+    Momo.init({
+      duration: 2000,
+      delay: 200,
+      curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+    });
+    expect(Momo.options.duration).toBe(2000);
+    expect(Momo.options.curve).toBe("cubic-bezier(0.83, 0, 0.17, 1)");
+    expect(Momo.options.delay).toBe(200);
+  });
 });
-// console.log(Momo.options);
-
-const body = Momo.animateGroup("body", { duration: 1200 });
