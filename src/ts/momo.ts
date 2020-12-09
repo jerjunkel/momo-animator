@@ -1,10 +1,5 @@
 import MomoAnimator from "./MomoAnimator.js";
-
-type MomoOptions = {
-  duration: number;
-  delay: number;
-  curve: string;
-};
+import { MomoOptions } from "./MomoOptions";
 
 export default class Momo {
   static options: MomoOptions;

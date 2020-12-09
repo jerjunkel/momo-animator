@@ -1,8 +1,4 @@
-type MomoOptions = {
-  duration: number;
-  delay: number;
-  curve: string;
-};
+import { MomoOptions } from "./MomoOptions";
 
 export default class MomoAnimator {
   private el: HTMLElement | HTMLElement[];
