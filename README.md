@@ -10,7 +10,7 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ### Add Momo using a script tag on your page.
 
-Momo will be added to the `window` with namespace `Momo` and will be accessible on all pages. It will be initilized with the default [`MomoOptions`](#momo-options); use the [`setGlobalOptions`](#momo-setGlobalOptions) method to change it.
+Momo will be added to the `window` object with namespace `Momo` and will be initilized with the default [`MomoOptions`](#momo-options); use the [`setGlobalOptions`](#momo-setGlobalOptions) method to change it.
 
 ```html
 <script src="/path/to/momo.js"></script>
@@ -28,7 +28,7 @@ Momo.setGlobalOptions({
 
 ### Animating a single element
 
-To animate a single element, pass the selector of the element and use the `animate` function, along with your [`MomoOptions`](#momo-options).
+To animate a single element, use the `animate` method with the selector of the element and your [`MomoOptions`](#momo-options).
 
 ```html
 <h2 id="fooElement" class="momo" data-animation="fade-in-right">
@@ -45,13 +45,13 @@ const fooAnimator = Momo.animate("#fooElement", {
 
 ### Animating a group of elements
 
-To animate a group of elements, pass the parent selector as the first argument and use the `animateGroup` function, along with your your options [`MomoOptions`](#momo-options).
+To animate a group of elements, use the `animateGroup` method along with the selector of the parent whose child elements you want to animate, and your [`MomoOptions`](#momo-options).
 
 ```html
 <div class="container">
   <h2 class="momo" data-animation="fade-in-up">Momo Animations</h2>
   <p class="momo" data-animation="fade-in-right" data-animation-delay="800">
-    Momo is pretty cool
+    Momo is pretty cool.
   </p>
 </div>
 ```
@@ -59,6 +59,7 @@ To animate a group of elements, pass the parent selector as the first argument a
 ```js
 const barAnimatorGroup = Momo.animateGroup(".container", {
   duration: 1200,
+  staggerBy: 200,
 });
 ```
 
@@ -76,6 +77,7 @@ Sets the global options for all animations. The previous properties, will not be
 ### `Momo.getGlobalOptions(options)`
 
 Returns the global options used for animations.
+
 **Returns:**
 | Name | Type | Description |
 | --------- | ------ | ------------------------------------------------------------ |
