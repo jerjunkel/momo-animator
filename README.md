@@ -10,24 +10,18 @@ Momo is a simple javascript animation library that animates elements once they a
 
 ### Add Momo using a script tag on your page.
 
-Momo will be added to the `window` namespace as a property named `Momo` and will be accessible on all pages.
+Momo will be added to the `window` with namespace `Momo` and will be accessible on all pages. It will be initilized with the default [`MomoOptions`](#momo-options); use the [`setGlobalOptions`](#momo-setGlobalOptions) method to change it.
 
 ```html
 <script src="/path/to/momo.js"></script>
 ```
 
-Before using Momo animator, you will need to iniatialize it with your own global [`MomoOptions`](#momo-options)
-or use Momo's default properties. You will only need to do this once.
-
 ```javascript
-// Initalizing with your custom properties
-Momo.init({
+// Adding your global options
+Momo.setGlobalOptions({
   duration: 2000,
   curve: "cubic-bezier(0.65, 0, 0.35, 1)",
 });
-
-// Using default options
-Momo.init();
 ```
 
 ## Usage
@@ -70,11 +64,20 @@ const barAnimatorGroup = Momo.animateGroup(".container", {
 
 ## Methods and Classes
 
-### `Momo.init(options)`
+### `Momo.setGlobalOptions(options)` <a name="momo-setGlobalOptions"></a>
 
-Iniatilizes Momo object by setting the global animation options. If no optioins are provided, it will use the default options. Calling this method more than once will overwrite the previous settings.
+Sets the global options for all animations. The previous properties, will not be changed unless overwritten with new ones.
 
-| Name      | Type   | Description                                                  |
+**Arguments:**
+| Name | Type | Description |
+| --------- | ------ | ------------------------------------------------------------ |
+| `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
+
+### `Momo.getGlobalOptions(options)`
+
+Returns the global options used for animations.
+**Returns:**
+| Name | Type | Description |
 | --------- | ------ | ------------------------------------------------------------ |
 | `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
 
