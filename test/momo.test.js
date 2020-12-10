@@ -4,8 +4,9 @@ import Momo from "../src/js/Momo";
 describe("Momo global options", () => {
   test("setting default options", () => {
     const defaultOptions = { duration: 1000, delay: 0, curve: "linear" };
-    Momo.init();
-    expect(Momo.options).toEqual(expect.objectContaining(defaultOptions));
+    expect(Momo.getGlobalOptions()).toEqual(
+      expect.objectContaining(defaultOptions)
+    );
   });
 
   test("setting user options", () => {
@@ -14,8 +15,10 @@ describe("Momo global options", () => {
       delay: 200,
       curve: "cubic-bezier(0.83, 0, 0.17, 1)",
     };
-    Momo.init(userSettings);
-    expect(Momo.options).toEqual(expect.objectContaining(userSettings));
+    Momo.setGlobalOptions(userSettings);
+    expect(Momo.getGlobalOptions()).toEqual(
+      expect.objectContaining(userSettings)
+    );
   });
 
   test("removes staggerBy options if add by user", () => {
@@ -25,8 +28,8 @@ describe("Momo global options", () => {
       curve: "cubic-bezier(0.83, 0, 0.17, 1)",
       staggerBy: 200,
     };
-    Momo.init(userSettings);
-    expect(Momo.options).toEqual(
+    Momo.setGlobalOptions(userSettings);
+    expect(Momo.getGlobalOptions()).toEqual(
       expect.not.objectContaining({ staggerBy: 200 })
     );
   });

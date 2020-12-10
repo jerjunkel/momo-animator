@@ -1,33 +1,46 @@
 import MomoAnimator from "./MomoAnimator.js";
 import { MomoOptions } from "./MomoOptions";
 
-export default class Momo {
-  static options: MomoOptions;
-  static init(
-    options: MomoOptions = { duration: 1000, delay: 0, curve: "linear" }
-  ) {
-    // Check for option properties
-    let { duration, delay, curve } = options;
+class Momo {
+  private _instance: Momo | null = null;
+  private _options: MomoOptions = { duration: 1000, delay: 0, curve: "linear" };
 
-    if (!duration) duration = 1000;
-    if (!delay) delay = 0;
-    if (!curve) curve = "linear";
-    Momo.options = { curve, duration, delay };
+  constructor() {
+    if (!this._instance) {
+      this._instance = this;
+      Object.freeze(this._instance);
+    }
+    return this._instance;
   }
 
-  static animate(selector: string, options?: MomoOptions): MomoAnimator {
+  getInstance() {
+    return this._instance;
+  }
+
+  setGlobalOptions(options: MomoOptions) {
+    const validOptions = this._checkOptions(options);
+    this._options.delay = validOptions.delay;
+    this._options.duration = validOptions.duration;
+    this._options.curve = validOptions.curve;
+  }
+
+  getGlobalOptions(): MomoOptions {
+    return this._options;
+  }
+
+  animate(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     if (!el.classList.contains("momo"))
       throw Error(`Element with selector ${selector} is missing Momo class`);
 
     const validOptions =
-      options == null ? Momo.options : MomoOptionsChecker.check(options!);
+      options == null ? this._options : this._checkOptions(options!);
 
     return new MomoAnimator(el, validOptions);
   }
 
-  static animateGroup(selector: string, options?: MomoOptions): MomoAnimator {
+  animateGroup(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     const momoElements = Array.from(
@@ -35,7 +48,7 @@ export default class Momo {
     ) as HTMLElement[];
 
     let validOptions =
-      options == null ? Momo.options : MomoOptionsChecker.check(options!);
+      options == null ? this._options : this._checkOptions(options!);
 
     if (options?.staggerBy) {
       const staggerBy = options?.staggerBy;
@@ -45,18 +58,14 @@ export default class Momo {
     return new MomoAnimator(momoElements, validOptions);
   }
 
-  constructor() {
-    throw Error("Use the init method");
-  }
-}
-
-class MomoOptionsChecker {
-  static check(options: MomoOptions): MomoOptions {
+  private _checkOptions(options: MomoOptions): MomoOptions {
     let { duration, delay, curve } = options;
-    if (!duration) duration = Momo.options.duration;
-    if (!delay) delay = Momo.options.delay;
-    if (!curve) curve = Momo.options.curve;
+    if (!duration) duration = this._options.duration;
+    if (!delay) delay = this._options.delay;
+    if (!curve) curve = this._options.curve;
 
-    return { curve, duration, delay };
+    return { duration, delay, curve };
   }
 }
+
+export default new Momo();
