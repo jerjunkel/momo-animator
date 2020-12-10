@@ -22,7 +22,7 @@ export default class MomoAnimator {
   private addIntersectionObserver() {
     //   Observer for all momo elements in parent
     const animate = (entry: IntersectionObserverEntry) => {
-      let timer: number;
+      let timer: any;
       let el = entry.target as HTMLElement;
       const animation = el.getAttribute("data-animation");
       if (!animation) return; // Exit if no animation is set
