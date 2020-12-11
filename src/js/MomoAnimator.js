@@ -1,18 +1,20 @@
 export default class MomoAnimator {
     constructor(el, options) {
-        this.el = el;
-        this.options = options;
-        this.setup();
+        this._el = el;
+        this._options = options;
+        Object.freeze(this._el);
+        Object.freeze(this._options);
+        this._setup();
     }
-    setup() {
-        this.addIntersectionObserver();
-        this.prepForFadeAnimation();
-        if (this.options.staggerBy) {
-            const offset = this.options.staggerBy;
-            this.prepForStagger(offset);
+    _setup() {
+        this._addIntersectionObserver();
+        this._prepForFadeAnimation();
+        if (this._options.staggerBy) {
+            const offset = this._options.staggerBy;
+            this._prepForStagger(offset);
         }
     }
-    addIntersectionObserver() {
+    _addIntersectionObserver() {
         //   Observer for all momo elements in parent
         const animate = (entry) => {
             let timer;
@@ -21,19 +23,19 @@ export default class MomoAnimator {
             if (!animation)
                 return; // Exit if no animation is set
             const delay = Number(el.getAttribute("data-animation-delay")) ||
-                this.options.delay;
+                this._options.delay;
             const duration = Number(el.getAttribute("data-animation-duration")) ||
-                this.options.duration;
+                this._options.duration;
             timer = setTimeout(() => {
                 el.removeAttribute("style");
                 clearTimeout(timer);
             }, duration + delay + 100);
-            el.style.animation = `momo-${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+            el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
         };
         // Animation observer
-        this.createObserver(this.el, animate);
+        this._createObserver(this._el, animate);
     }
-    createObserver(elements, closure, options = {}) {
+    _createObserver(elements, closure, options = {}) {
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting)
@@ -49,10 +51,10 @@ export default class MomoAnimator {
             observer.observe(el);
         });
     }
-    prepForFadeAnimation() {
+    _prepForFadeAnimation() {
         var _a;
-        if (Array.isArray(this.el)) {
-            this.el.forEach((el) => {
+        if (Array.isArray(this._el)) {
+            this._el.forEach((el) => {
                 var _a;
                 if ((_a = el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
                     el.style.opacity = "0";
@@ -60,15 +62,15 @@ export default class MomoAnimator {
             });
         }
         else {
-            if ((_a = this.el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
-                this.el.style.opacity = "0";
+            if ((_a = this._el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g)) {
+                this._el.style.opacity = "0";
             }
         }
     }
-    prepForStagger(offset) {
-        if (Array.isArray(this.el)) {
+    _prepForStagger(offset) {
+        if (Array.isArray(this._el)) {
             let count = 0;
-            for (let el of this.el) {
+            for (let el of this._el) {
                 if (el.hasAttribute("data-animation-delay"))
                     continue;
                 el.setAttribute("data-animation-delay", String(count * offset));

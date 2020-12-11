@@ -1,25 +1,27 @@
 import { MomoOptions } from "./MomoOptions";
 
 export default class MomoAnimator {
-  private el: HTMLElement | HTMLElement[];
-  private options: MomoOptions;
+  private _el: HTMLElement | HTMLElement[];
+  private _options: MomoOptions;
 
   constructor(el: HTMLElement | HTMLElement[], options: MomoOptions) {
-    this.el = el;
-    this.options = options;
-    this.setup();
+    this._el = el;
+    this._options = options;
+    Object.freeze(this._el);
+    Object.freeze(this._options);
+    this._setup();
   }
 
-  private setup() {
-    this.addIntersectionObserver();
-    this.prepForFadeAnimation();
-    if (this.options.staggerBy) {
-      const offset = this.options.staggerBy;
-      this.prepForStagger(offset);
+  private _setup() {
+    this._addIntersectionObserver();
+    this._prepForFadeAnimation();
+    if (this._options.staggerBy) {
+      const offset = this._options.staggerBy;
+      this._prepForStagger(offset);
     }
   }
 
-  private addIntersectionObserver() {
+  private _addIntersectionObserver() {
     //   Observer for all momo elements in parent
     const animate = (entry: IntersectionObserverEntry) => {
       let timer: any;
@@ -28,24 +30,24 @@ export default class MomoAnimator {
       if (!animation) return; // Exit if no animation is set
       const delay =
         Number(el.getAttribute("data-animation-delay") as string) ||
-        this.options.delay;
+        this._options.delay;
       const duration =
         Number(el.getAttribute("data-animation-duration") as string) ||
-        this.options.duration;
+        this._options.duration;
 
       timer = setTimeout(() => {
         el.removeAttribute("style");
         clearTimeout(timer);
       }, duration + delay + 100);
 
-      el.style.animation = `momo-${animation} ${this.options.curve} ${duration}ms ${delay}ms forwards`;
+      el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
     };
 
     // Animation observer
-    this.createObserver(this.el, animate);
+    this._createObserver(this._el, animate);
   }
 
-  private createObserver(
+  private _createObserver(
     elements: HTMLElement | HTMLElement[],
     closure: (entry: IntersectionObserverEntry) => void,
     options: object = {}
@@ -66,25 +68,25 @@ export default class MomoAnimator {
     });
   }
 
-  private prepForFadeAnimation() {
-    if (Array.isArray(this.el)) {
-      this.el.forEach((el) => {
+  private _prepForFadeAnimation() {
+    if (Array.isArray(this._el)) {
+      this._el.forEach((el) => {
         if (el.getAttribute("data-animation")?.match(/^fade/g)) {
           el.style.opacity = "0";
         }
       });
     } else {
-      if (this.el.getAttribute("data-animation")?.match(/^fade/g)) {
-        this.el.style.opacity = "0";
+      if (this._el.getAttribute("data-animation")?.match(/^fade/g)) {
+        this._el.style.opacity = "0";
       }
     }
   }
 
-  private prepForStagger(offset: number) {
-    if (Array.isArray(this.el)) {
+  private _prepForStagger(offset: number) {
+    if (Array.isArray(this._el)) {
       let count = 0;
 
-      for (let el of this.el) {
+      for (let el of this._el) {
         if (el.hasAttribute("data-animation-delay")) continue;
         el.setAttribute("data-animation-delay", String(count * offset));
         count++;
