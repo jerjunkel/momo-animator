@@ -28,7 +28,7 @@ class Momo {
     return this._options;
   }
 
-  animate(selector: string, options?: MomoOptions): MomoAnimator {
+  createAnimatable(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     if (!el.classList.contains("momo"))
@@ -40,7 +40,7 @@ class Momo {
     return new MomoAnimator(el, validOptions);
   }
 
-  animateGroup(selector: string, options?: MomoOptions): MomoAnimator {
+  createAnimatableGroup(selector: string, options?: MomoOptions): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     const momoElements = Array.from(

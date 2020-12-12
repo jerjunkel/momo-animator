@@ -52,9 +52,9 @@
         duration: 1000,
       });
 
-      const momoImage = Momo.animate(".header__img");
+      const momoImage = Momo.createAnimatable(".header__img");
 
-      const headerText = Momo.animateGroup(".header__text", {
+      const headerText = Momo.createAnimatableGroup(".header__text", {
         curve: "cubic-bezier(0.83, 0, 0.17, 1)",
         staggerBy: 400,
       });

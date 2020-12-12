@@ -37,7 +37,7 @@ To animate a single element, use the `animate` method with the selector of the e
 ```
 
 ```js
-const fooAnimator = Momo.animate("#fooElement", {
+const fooAnimator = Momo.createAnimatable("#fooElement", {
   duration: 2500,
   delay: 1000,
 });
@@ -57,7 +57,7 @@ To animate a group of elements, use the `animateGroup` method along with the sel
 ```
 
 ```js
-const barAnimatorGroup = Momo.animateGroup(".fooParent", {
+const barAnimatorGroup = Momo.createAnimatableGroup(".fooParent", {
   duration: 1200,
   staggerBy: 200,
 });
@@ -83,7 +83,7 @@ Returns the global options used for animations.
 | --------- | ------ | ------------------------------------------------------------ |
 | `options` | object | See [`MomoOptions`](#momo-options) section for more details. |
 
-### `Momo.animate(selector, options)`
+### `Momo.createAnimatable(selector, options)`
 
 Animates a single Momo element.
 
@@ -98,7 +98,7 @@ Animates a single Momo element.
 | ------ | ------------------------------------- |
 | `Momo.MomoAnimator`| The return type is the animator class used to managed all the elements. |
 
-### `Momo.animateGroup(selector, options)`
+### `Momo.createAnimatableGroup(selector, options)`
 
 Animates a group of Momo elements.
 

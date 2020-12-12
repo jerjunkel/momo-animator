@@ -21,7 +21,7 @@ class Momo {
     getGlobalOptions() {
         return this._options;
     }
-    animate(selector, options) {
+    createAnimatable(selector, options) {
         const el = document.querySelector(selector);
         if (!el)
             throw Error(`No element found with selector ${selector}`);
@@ -30,7 +30,7 @@ class Momo {
         const validOptions = options == null ? this._options : this._checkOptions(options);
         return new MomoAnimator(el, validOptions);
     }
-    animateGroup(selector, options) {
+    createAnimatableGroup(selector, options) {
         const el = document.querySelector(selector);
         if (!el)
             throw Error(`No element found with selector ${selector}`);
