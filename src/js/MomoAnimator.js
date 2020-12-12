@@ -6,6 +6,11 @@ export default class MomoAnimator {
         Object.freeze(this._options);
         this._setup();
     }
+    setOptions(options) { }
+    getOptions() {
+        return this._options;
+    }
+    animate() { }
     _setup() {
         this._addIntersectionObserver();
         this._prepForFadeAnimation();
