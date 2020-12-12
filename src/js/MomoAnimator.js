@@ -10,7 +10,19 @@ export default class MomoAnimator {
     getOptions() {
         return this._options;
     }
-    animate() { }
+    animate() {
+        const isAnimatableGroup = Array.isArray(this._el);
+        if (isAnimatableGroup) {
+            const elements = Array.from(this._el);
+            elements.forEach((el) => {
+                this._animate(el);
+            });
+        }
+        else {
+            const el = this._el;
+            this._animate(el);
+        }
+    }
     _setup() {
         this._addIntersectionObserver();
         this._prepForFadeAnimation();
@@ -19,23 +31,31 @@ export default class MomoAnimator {
             this._prepForStagger(offset);
         }
     }
+    _animate(el) {
+        var _a;
+        let timer;
+        const hasFadeAnimation = (_a = el.getAttribute("data-animation")) === null || _a === void 0 ? void 0 : _a.match(/^fade/g);
+        const animation = el.getAttribute("data-animation");
+        if (!animation)
+            return; // Exit if no animation is set
+        const delay = Number(el.getAttribute("data-animation-delay")) ||
+            this._options.delay;
+        const duration = Number(el.getAttribute("data-animation-duration")) ||
+            this._options.duration;
+        if (hasFadeAnimation) {
+            el.style.opacity = "0";
+        }
+        timer = setTimeout(() => {
+            el.removeAttribute("style");
+            clearTimeout(timer);
+        }, duration + delay + 100);
+        el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
+    }
     _addIntersectionObserver() {
         //   Observer for all momo elements in parent
         const animate = (entry) => {
-            let timer;
-            let el = entry.target;
-            const animation = el.getAttribute("data-animation");
-            if (!animation)
-                return; // Exit if no animation is set
-            const delay = Number(el.getAttribute("data-animation-delay")) ||
-                this._options.delay;
-            const duration = Number(el.getAttribute("data-animation-duration")) ||
-                this._options.duration;
-            timer = setTimeout(() => {
-                el.removeAttribute("style");
-                clearTimeout(timer);
-            }, duration + delay + 100);
-            el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
+            const el = entry.target;
+            this._animate(el);
         };
         // Animation observer
         this._createObserver(this._el, animate);

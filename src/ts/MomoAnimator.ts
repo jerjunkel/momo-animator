@@ -18,7 +18,19 @@ export default class MomoAnimator {
     return this._options;
   }
 
-  animate() {}
+  animate() {
+    const isAnimatableGroup = Array.isArray(this._el);
+
+    if (isAnimatableGroup) {
+      const elements = Array.from(this._el as HTMLElement[]);
+      elements.forEach((el) => {
+        this._animate(el);
+      });
+    } else {
+      const el = this._el as HTMLElement;
+      this._animate(el);
+    }
+  }
 
   private _setup() {
     this._addIntersectionObserver();
@@ -29,26 +41,35 @@ export default class MomoAnimator {
     }
   }
 
+  private _animate(el: HTMLElement) {
+    let timer: any;
+    const hasFadeAnimation = el.getAttribute("data-animation")?.match(/^fade/g);
+    const animation = el.getAttribute("data-animation");
+    if (!animation) return; // Exit if no animation is set
+    const delay =
+      Number(el.getAttribute("data-animation-delay") as string) ||
+      this._options.delay;
+    const duration =
+      Number(el.getAttribute("data-animation-duration") as string) ||
+      this._options.duration;
+
+    if (hasFadeAnimation) {
+      el.style.opacity = "0";
+    }
+
+    timer = setTimeout(() => {
+      el.removeAttribute("style");
+      clearTimeout(timer);
+    }, duration + delay + 100);
+
+    el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
+  }
+
   private _addIntersectionObserver() {
     //   Observer for all momo elements in parent
     const animate = (entry: IntersectionObserverEntry) => {
-      let timer: any;
-      let el = entry.target as HTMLElement;
-      const animation = el.getAttribute("data-animation");
-      if (!animation) return; // Exit if no animation is set
-      const delay =
-        Number(el.getAttribute("data-animation-delay") as string) ||
-        this._options.delay;
-      const duration =
-        Number(el.getAttribute("data-animation-duration") as string) ||
-        this._options.duration;
-
-      timer = setTimeout(() => {
-        el.removeAttribute("style");
-        clearTimeout(timer);
-      }, duration + delay + 100);
-
-      el.style.animation = `momo-${animation} ${this._options.curve} ${duration}ms ${delay}ms forwards`;
+      const el = entry.target as HTMLElement;
+      this._animate(el);
     };
 
     // Animation observer
