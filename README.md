@@ -48,7 +48,7 @@ const fooAnimator = Momo.animate("#fooElement", {
 To animate a group of elements, use the `animateGroup` method along with the selector of the parent whose child elements you want to animate, and your [`MomoOptions`](#momo-options).
 
 ```html
-<div class="container">
+<div class="fooParent">
   <h2 class="momo" data-animation="fade-in-up">Momo Animations</h2>
   <p class="momo" data-animation="fade-in-right" data-animation-delay="800">
     Momo is pretty cool.
@@ -57,7 +57,7 @@ To animate a group of elements, use the `animateGroup` method along with the sel
 ```
 
 ```js
-const barAnimatorGroup = Momo.animateGroup(".container", {
+const barAnimatorGroup = Momo.animateGroup(".fooParent", {
   duration: 1200,
   staggerBy: 200,
 });
