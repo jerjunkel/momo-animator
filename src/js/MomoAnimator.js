@@ -53,12 +53,12 @@ export default class MomoAnimator {
     }
     _addIntersectionObserver() {
         //   Observer for all momo elements in parent
-        const animate = (entry) => {
+        const animationObserverCallback = (entry) => {
             const el = entry.target;
             this._animate(el);
         };
         // Animation observer
-        this._createObserver(this._el, animate);
+        this._createObserver(this._el, animationObserverCallback);
     }
     _createObserver(elements, closure, options = {}) {
         const observer = new IntersectionObserver((entries, observer) => {
