@@ -23,6 +23,9 @@ export default class MomoAnimator {
             this._animate(el);
         }
     }
+    then() {
+        return new Thenable(this);
+    }
     _setup() {
         this._addIntersectionObserver();
         this._prepForFadeAnimation();
@@ -103,4 +106,13 @@ export default class MomoAnimator {
             }
         }
     }
+}
+class Thenable {
+    constructor(animator) {
+        this._animator = animator;
+    }
+    then(options) {
+        return this;
+    }
+    animate() { }
 }

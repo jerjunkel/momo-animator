@@ -32,6 +32,10 @@ export default class MomoAnimator {
     }
   }
 
+  then(): Thenable {
+    return new Thenable(this);
+  }
+
   private _setup() {
     this._addIntersectionObserver();
     this._prepForFadeAnimation();
@@ -122,4 +126,17 @@ export default class MomoAnimator {
       }
     }
   }
+}
+
+class Thenable {
+  private _animator: MomoAnimator;
+  constructor(animator: MomoAnimator) {
+    this._animator = animator;
+  }
+
+  then(options: MomoOptions): Thenable {
+    return this;
+  }
+
+  animate() {}
 }
