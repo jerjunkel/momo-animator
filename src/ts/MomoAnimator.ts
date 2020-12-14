@@ -1,4 +1,5 @@
 import { MomoOptions } from "./MomoOptions";
+import LinkedList from "./LinkedList";
 
 export default class MomoAnimator {
   private _el: HTMLElement | HTMLElement[];
@@ -32,8 +33,8 @@ export default class MomoAnimator {
     }
   }
 
-  then(): Thenable {
-    return new Thenable(this);
+  then(options: MomoOptions): Thenable {
+    return new Thenable(this, options);
   }
 
   private _setup() {
@@ -129,14 +130,23 @@ export default class MomoAnimator {
 }
 
 class Thenable {
-  private _animator: MomoAnimator;
-  constructor(animator: MomoAnimator) {
-    this._animator = animator;
+  private _options: LinkedList<MomoOptions>;
+  constructor(animator: MomoAnimator, newOptions: MomoOptions) {
+    this._options = new LinkedList<MomoOptions>(animator.getOptions());
+    this._options.add(newOptions);
   }
 
   then(options: MomoOptions): Thenable {
+    this._options.add(options);
     return this;
   }
 
-  animate() {}
+  animate() {
+    let option = this._options.next();
+
+    while (option !== null) {
+      console.log(option);
+      option = this._options.next();
+    }
+  }
 }

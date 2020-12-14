@@ -18,6 +18,9 @@ export default class LinkedList {
         this.current = this.current.next;
         return val;
     }
+    get currentVal() {
+        return null;
+    }
     get count() {
         let count = 0;
         let current = this.head;

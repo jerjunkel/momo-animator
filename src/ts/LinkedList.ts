@@ -25,6 +25,10 @@ export default class LinkedList<T> {
     return val;
   }
 
+  get currentVal(): T | null {
+    return null;
+  }
+
   get count(): number {
     let count = 0;
     let current: ListNode<T> | null = this.head;

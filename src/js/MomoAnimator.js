@@ -1,3 +1,4 @@
+import LinkedList from "./LinkedList";
 export default class MomoAnimator {
     constructor(el, options) {
         this._el = el;
@@ -23,8 +24,8 @@ export default class MomoAnimator {
             this._animate(el);
         }
     }
-    then() {
-        return new Thenable(this);
+    then(options) {
+        return new Thenable(this, options);
     }
     _setup() {
         this._addIntersectionObserver();
@@ -108,11 +109,19 @@ export default class MomoAnimator {
     }
 }
 class Thenable {
-    constructor(animator) {
-        this._animator = animator;
+    constructor(animator, newOptions) {
+        this._options = new LinkedList(animator.getOptions());
+        this._options.add(newOptions);
     }
     then(options) {
+        this._options.add(options);
         return this;
     }
-    animate() { }
+    animate() {
+        let option = this._options.next();
+        while (option !== null) {
+            console.log(option);
+            option = this._options.next();
+        }
+    }
 }
