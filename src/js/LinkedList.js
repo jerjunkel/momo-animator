@@ -1,17 +1,26 @@
-export class OptionsList {
+export class LinkedList {
     constructor(node) {
         this.head = node;
     }
     add(val) {
         let current = this.head;
-        const node = new OptionNode(val);
+        const node = new ListNode(val);
         while (current.next !== null) {
             current = current.next;
         }
         current.next = node;
     }
+    get count() {
+        let count = 0;
+        let current = this.head;
+        while (current !== null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
 }
-export class OptionNode {
+export class ListNode {
     constructor(val) {
         this.next = null;
         this.val = val;
