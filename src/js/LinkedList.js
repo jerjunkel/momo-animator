@@ -1,6 +1,6 @@
-export class LinkedList {
-    constructor(node) {
-        this.head = node;
+export default class LinkedList {
+    constructor(val) {
+        this.head = new ListNode(val);
     }
     add(val) {
         let current = this.head;
@@ -20,7 +20,7 @@ export class LinkedList {
         return count;
     }
 }
-export class ListNode {
+class ListNode {
     constructor(val) {
         this.next = null;
         this.val = val;

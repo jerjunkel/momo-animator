@@ -1,7 +1,7 @@
-export class LinkedList<T> {
+export default class LinkedList<T> {
   private head: ListNode<T>;
-  constructor(node: ListNode<T>) {
-    this.head = node;
+  constructor(val: T) {
+    this.head = new ListNode<T>(val);
   }
 
   add(val: T) {
@@ -27,7 +27,7 @@ export class LinkedList<T> {
   }
 }
 
-export class ListNode<T> {
+class ListNode<T> {
   val: T;
   next: ListNode<T> | null = null;
   constructor(val: T) {

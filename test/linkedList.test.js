@@ -1,24 +1,21 @@
-import { LinkedList, ListNode } from "../src/js/LinkedList";
+import LinkedList from "../src/js/LinkedList";
 
 describe("Testing a linked list for animations", () => {
   test("creating a new list", () => {
-    const aNode = new ListNode("Foo");
-    const list = new LinkedList(aNode);
+    const list = new LinkedList("Foo");
     expect(list.head.val).toEqual("Foo");
     expect(list.count).toEqual(1);
   });
 
   test("add two elements to list", () => {
-    const aNode = new ListNode("Foo");
-    const list = new LinkedList(aNode);
+    const list = new LinkedList("Foo");
     list.add("Bar");
     expect(list.head.next.val).toEqual("Bar");
     expect(list.count).toEqual(2);
   });
 
   test("add five elements to list", () => {
-    const aNode = new ListNode("Foo");
-    const list = new LinkedList(aNode);
+    const list = new LinkedList("Foo");
     list.add("Bar");
     list.add("FooBar");
     list.add("BarFoo");
