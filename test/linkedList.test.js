@@ -3,15 +3,15 @@ import LinkedList from "../src/js/LinkedList";
 describe("Testing a linked list for animations", () => {
   test("creating a new list", () => {
     const list = new LinkedList("Foo");
-    expect(list.head.val).toEqual("Foo");
-    expect(list.count).toEqual(1);
+    expect(list.head.val).toBe("Foo");
+    expect(list.count).toBe(1);
   });
 
   test("add two elements to list", () => {
     const list = new LinkedList("Foo");
     list.add("Bar");
-    expect(list.head.next.val).toEqual("Bar");
-    expect(list.count).toEqual(2);
+    expect(list.head.next.val).toBe("Bar");
+    expect(list.count).toBe(2);
   });
 
   test("add five elements to list", () => {
@@ -21,7 +21,18 @@ describe("Testing a linked list for animations", () => {
     list.add("BarFoo");
     list.add("FooBarFoo");
 
-    expect(list.head.next.next.next.next.val).toEqual("FooBarFoo");
-    expect(list.count).toEqual(5);
+    expect(list.head.next.next.next.next.val).toBe("FooBarFoo");
+    expect(list.count).toBe(5);
+  });
+
+  test("test next method", () => {
+    const list = new LinkedList("Foo");
+    list.add("Bar");
+    list.add("FooBar");
+
+    expect(list.next()).toBe("Foo");
+    expect(list.next()).toBe("Bar");
+    expect(list.next()).toBe("FooBar");
+    expect(list.next()).toBe(null);
   });
 });

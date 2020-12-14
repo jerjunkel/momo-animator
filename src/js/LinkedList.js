@@ -1,6 +1,7 @@
 export default class LinkedList {
     constructor(val) {
         this.head = new ListNode(val);
+        this.current = this.head;
     }
     add(val) {
         let current = this.head;
@@ -9,6 +10,13 @@ export default class LinkedList {
             current = current.next;
         }
         current.next = node;
+    }
+    next() {
+        if (this.current == null)
+            return null;
+        const val = this.current.val;
+        this.current = this.current.next;
+        return val;
     }
     get count() {
         let count = 0;

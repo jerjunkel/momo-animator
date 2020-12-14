@@ -1,7 +1,9 @@
 export default class LinkedList<T> {
   private head: ListNode<T>;
+  private current: ListNode<T> | null;
   constructor(val: T) {
     this.head = new ListNode<T>(val);
+    this.current = this.head;
   }
 
   add(val: T) {
@@ -13,6 +15,14 @@ export default class LinkedList<T> {
     }
 
     current.next = node;
+  }
+
+  next(): T | null {
+    if (this.current == null) return null;
+
+    const val = this.current.val;
+    this.current = this.current.next;
+    return val;
   }
 
   get count(): number {
