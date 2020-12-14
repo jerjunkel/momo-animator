@@ -3,14 +3,14 @@ import LinkedList from "../src/js/LinkedList";
 describe("Testing a linked list for animations", () => {
   test("creating a new list", () => {
     const list = new LinkedList("Foo");
-    expect(list.head.val).toBe("Foo");
+    expect(list.head.item).toBe("Foo");
     expect(list.count).toBe(1);
   });
 
   test("add two elements to list", () => {
     const list = new LinkedList("Foo");
     list.add("Bar");
-    expect(list.head.next.val).toBe("Bar");
+    expect(list.head.next.item).toBe("Bar");
     expect(list.count).toBe(2);
   });
 
@@ -21,7 +21,7 @@ describe("Testing a linked list for animations", () => {
     list.add("BarFoo");
     list.add("FooBarFoo");
 
-    expect(list.head.next.next.next.next.val).toBe("FooBarFoo");
+    expect(list.head.next.next.next.next.item).toBe("FooBarFoo");
     expect(list.count).toBe(5);
   });
 

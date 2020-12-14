@@ -1,14 +1,14 @@
 export default class LinkedList<T> {
   private head: ListNode<T>;
   private current: ListNode<T> | null;
-  constructor(val: T) {
-    this.head = new ListNode<T>(val);
+  constructor(item: T) {
+    this.head = new ListNode<T>(item);
     this.current = this.head;
   }
 
-  add(val: T) {
+  add(item: T) {
     let current = this.head;
-    const node = new ListNode<T>(val);
+    const node = new ListNode<T>(item);
 
     while (current.next !== null) {
       current = current.next;
@@ -20,12 +20,12 @@ export default class LinkedList<T> {
   next(): T | null {
     if (this.current == null) return null;
 
-    const val = this.current.val;
+    const item = this.current.item;
     this.current = this.current.next;
-    return val;
+    return item;
   }
 
-  get currentVal(): T | null {
+  get currentItem(): T | null {
     return null;
   }
 
@@ -42,9 +42,9 @@ export default class LinkedList<T> {
 }
 
 class ListNode<T> {
-  val: T;
+  item: T;
   next: ListNode<T> | null = null;
-  constructor(val: T) {
-    this.val = val;
+  constructor(item: T) {
+    this.item = item;
   }
 }

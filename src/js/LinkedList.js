@@ -1,11 +1,11 @@
 export default class LinkedList {
-    constructor(val) {
-        this.head = new ListNode(val);
+    constructor(item) {
+        this.head = new ListNode(item);
         this.current = this.head;
     }
-    add(val) {
+    add(item) {
         let current = this.head;
-        const node = new ListNode(val);
+        const node = new ListNode(item);
         while (current.next !== null) {
             current = current.next;
         }
@@ -14,11 +14,11 @@ export default class LinkedList {
     next() {
         if (this.current == null)
             return null;
-        const val = this.current.val;
+        const item = this.current.item;
         this.current = this.current.next;
-        return val;
+        return item;
     }
-    get currentVal() {
+    get currentItem() {
         return null;
     }
     get count() {
@@ -32,8 +32,8 @@ export default class LinkedList {
     }
 }
 class ListNode {
-    constructor(val) {
+    constructor(item) {
         this.next = null;
-        this.val = val;
+        this.item = item;
     }
 }
