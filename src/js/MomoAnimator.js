@@ -7,6 +7,9 @@ export default class MomoAnimator {
         Object.freeze(this._options);
         this._setup();
     }
+    getElement() {
+        return this._el;
+    }
     setOptions(options) { }
     getOptions() {
         return this._options;
@@ -112,6 +115,7 @@ class Thenable {
     constructor(animator, newOptions) {
         this._options = new LinkedList(animator.getOptions());
         this._options.add(newOptions);
+        this._el = animator.getElement();
     }
     then(options) {
         this._options.add(options);
@@ -123,5 +127,9 @@ class Thenable {
             console.log(option);
             option = this._options.next();
         }
+    }
+    // TODO: Animate and wait for animation to finish
+    _animate(options) {
+        let timer;
     }
 }

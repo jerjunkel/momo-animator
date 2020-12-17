@@ -13,6 +13,10 @@ export default class MomoAnimator {
     this._setup();
   }
 
+  getElement(): HTMLElement | HTMLElement[] {
+    return this._el;
+  }
+
   setOptions(options: MomoOptions) {}
 
   getOptions(): MomoOptions {
@@ -131,9 +135,11 @@ export default class MomoAnimator {
 
 class Thenable {
   private _options: LinkedList<MomoOptions>;
+  private _el: HTMLElement | HTMLElement[];
   constructor(animator: MomoAnimator, newOptions: MomoOptions) {
     this._options = new LinkedList<MomoOptions>(animator.getOptions());
     this._options.add(newOptions);
+    this._el = animator.getElement();
   }
 
   then(options: MomoOptions): Thenable {
@@ -148,5 +154,9 @@ class Thenable {
       console.log(option);
       option = this._options.next();
     }
+  }
+  // TODO: Animate and wait for animation to finish
+  private _animate(options: MomoOptions) {
+    let timer: any;
   }
 }
