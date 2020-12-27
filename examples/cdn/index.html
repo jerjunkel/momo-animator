@@ -52,7 +52,18 @@
         duration: 1000,
       });
 
-      const momoImage = Momo.createAnimatable(".header__img");
+      const momoImage = Momo.createAnimatable(".header__img", {
+        curve: "ease-in-out",
+      });
+      momoImage
+        .then({ duration: 2000, animation: "fade-in-down" })
+        .then({ delay: 300, duration: 2000, animation: "fade-in-right" })
+        .then({
+          duration: 2000,
+          animation: "fade-in-up",
+          curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+        })
+        .animate();
 
       const headerText = Momo.createAnimatableGroup(".header__text", {
         curve: "cubic-bezier(0.83, 0, 0.17, 1)",

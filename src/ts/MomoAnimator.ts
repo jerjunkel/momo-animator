@@ -33,7 +33,7 @@ export default class MomoAnimator {
       });
     } else {
       const el = this._el as HTMLElement;
-      this._animate(el);
+      // this._animate(el);
     }
   }
 
@@ -78,7 +78,7 @@ export default class MomoAnimator {
     //   Observer for all momo elements in parent
     const animationObserverCallback = (entry: IntersectionObserverEntry) => {
       const el = entry.target as HTMLElement;
-      this._animate(el);
+      // this._animate(el);
     };
 
     // Animation observer
@@ -153,12 +153,12 @@ class Thenable {
 
     if (option == null) return;
 
-    // const animation = option
+    const el = this._el as HTMLElement;
+
+    const animation = option.animation || el.getAttribute("data-animation");
     const duration = option.duration || this._options.firstItem?.duration;
     const delay = option.delay || this._options.firstItem?.delay;
     const curve = option.curve || this._options.firstItem?.curve;
-
-    const el = this._el as HTMLElement;
 
     timer = setTimeout(() => {
       el.removeAttribute("style");
@@ -166,7 +166,8 @@ class Thenable {
       this.animate();
     }, duration! + delay! + 100);
 
-    el.style.animation = `momo-fade-in-up ${curve} ${duration}ms ${delay}ms forwards`;
+    el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
+    console.log(el.style.animation);
   }
   // TODO: Animate and wait for animation to finish
   private _animate(options: MomoOptions) {
