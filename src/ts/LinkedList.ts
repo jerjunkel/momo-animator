@@ -39,6 +39,10 @@ export default class LinkedList<T> {
     }
     return count;
   }
+
+  get firstItem(): T | null {
+    return this.head.item;
+  }
 }
 
 class ListNode<T> {

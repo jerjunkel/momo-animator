@@ -122,11 +122,22 @@ class Thenable {
         return this;
     }
     animate() {
+        var _a, _b, _c;
         let option = this._options.next();
-        while (option !== null) {
-            console.log(option);
-            option = this._options.next();
-        }
+        let timer;
+        if (option == null)
+            return;
+        // const animation = option
+        const duration = option.duration || ((_a = this._options.firstItem) === null || _a === void 0 ? void 0 : _a.duration);
+        const delay = option.delay || ((_b = this._options.firstItem) === null || _b === void 0 ? void 0 : _b.delay);
+        const curve = option.curve || ((_c = this._options.firstItem) === null || _c === void 0 ? void 0 : _c.curve);
+        const el = this._el;
+        timer = setTimeout(() => {
+            el.removeAttribute("style");
+            clearTimeout(timer);
+            this.animate();
+        }, duration + delay + 100);
+        el.style.animation = `momo-fade-in-up ${curve} ${duration}ms ${delay}ms forwards`;
     }
     // TODO: Animate and wait for animation to finish
     _animate(options) {

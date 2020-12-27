@@ -149,11 +149,24 @@ class Thenable {
 
   animate() {
     let option = this._options.next();
+    let timer: any;
 
-    while (option !== null) {
-      console.log(option);
-      option = this._options.next();
-    }
+    if (option == null) return;
+
+    // const animation = option
+    const duration = option.duration || this._options.firstItem?.duration;
+    const delay = option.delay || this._options.firstItem?.delay;
+    const curve = option.curve || this._options.firstItem?.curve;
+
+    const el = this._el as HTMLElement;
+
+    timer = setTimeout(() => {
+      el.removeAttribute("style");
+      clearTimeout(timer);
+      this.animate();
+    }, duration! + delay! + 100);
+
+    el.style.animation = `momo-fade-in-up ${curve} ${duration}ms ${delay}ms forwards`;
   }
   // TODO: Animate and wait for animation to finish
   private _animate(options: MomoOptions) {

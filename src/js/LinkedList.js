@@ -30,6 +30,9 @@ export default class LinkedList {
         }
         return count;
     }
+    get firstItem() {
+        return this.head.item;
+    }
 }
 class ListNode {
     constructor(item) {
