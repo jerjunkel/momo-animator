@@ -3,4 +3,5 @@ export type MomoOptions = {
   delay: number;
   curve: string;
   staggerBy?: number;
+  animation?: string;
 };
