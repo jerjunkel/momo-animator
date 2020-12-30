@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/animation.css" />
     <script src="/dist/momo.umd.js"></script>
   </head>
   <body>
@@ -24,16 +25,19 @@
       </nav>
       <div class="header__content">
         <div class="header__text">
-          <h1 class="header__cta momo" data-animation="fade-in-right">
+          <h1 class="header__cta momo" data-animation="fade-enter-right">
             Come try Momo Animations
           </h1>
-          <p class="header__description momo" data-animation="fade-in-right">
+          <p class="header__description momo" data-animation="fade-enter-right">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
             corrupti nisi reprehenderit, illo quis voluptate placeat eum. Magni,
             fugit. Labore architecto obcaecati enim, eius nemo ipsam nisi.
             Voluptates, non illum.
           </p>
-          <a href="" class="btn btn__primary momo" data-animation="fade-in-up"
+          <a
+            href=""
+            class="btn btn__primary momo"
+            data-animation="fade-enter-bottom"
             >Get Momo</a
           >
         </div>
@@ -41,7 +45,7 @@
           src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d57c2b3-8ae8-469d-bad1-1e90c5cef95f/d17cyfq-5ec30536-3a28-4291-98a8-580aba9d32f4.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWQ1N2MyYjMtOGFlOC00NjlkLWJhZDEtMWU5MGM1Y2VmOTVmXC9kMTdjeWZxLTVlYzMwNTM2LTNhMjgtNDI5MS05OGE4LTU4MGFiYTlkMzJmNC5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.MSAcPwPyiznPU4Ab9YsVIQu4Bkpi5e9WQ9LchS6akRM"
           alt="momo avatar image"
           class="header__img momo"
-          data-animation="fade-in"
+          data-animation="fade-enter"
         />
       </div>
     </header>
@@ -56,11 +60,12 @@
         curve: "ease-in-out",
       });
       momoImage
-        .then({ duration: 2000, animation: "fade-in-down" })
-        .then({ delay: 300, duration: 2000, animation: "fade-in-right" })
+        .then({ duration: 2000, animation: "fade-leave" })
+        .then({ duration: 2000, animation: "fade-enter-top" })
+        .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
         .then({
           duration: 2000,
-          animation: "fade-in-up",
+          animation: "fade-enter-right",
           curve: "cubic-bezier(0.83, 0, 0.17, 1)",
         })
         .animate();

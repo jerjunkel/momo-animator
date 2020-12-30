@@ -1,11 +1,22 @@
 @each $direction in $animation-directions {
-  @keyframes momo-slide-in-#{$direction} {
+  @keyframes momo-slide-enter-#{$direction} {
     from {
       @include animation-direction($direction);
     }
 
     to {
       transform: translate(0);
+    }
+  }
+}
+@each $direction in $animation-directions {
+  @keyframes momo-slide-leave-#{$direction} {
+    from {
+      transform: translate(0);
+    }
+
+    to {
+      @include animation-direction($direction);
     }
   }
 }

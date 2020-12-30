@@ -1,4 +1,4 @@
-@keyframes momo-fade-in {
+@keyframes momo-fade-enter {
   from {
     opacity: 0;
   }
@@ -9,7 +9,7 @@
 }
 
 @each $direction in $animation-directions {
-  @keyframes momo-fade-in-#{$direction} {
+  @keyframes momo-fade-enter-#{$direction} {
     from {
       opacity: 0;
       @include animation-direction($direction);
@@ -18,6 +18,30 @@
     to {
       opacity: 1;
       transform: translate(0);
+    }
+  }
+}
+
+@keyframes momo-fade-leave {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@each $direction in $animation-directions {
+  @keyframes momo-fade-leave-#{$direction} {
+    from {
+      opacity: 1;
+      transform: translate(0);
+    }
+
+    to {
+      opacity: 0;
+      @include animation-direction($direction);
     }
   }
 }
