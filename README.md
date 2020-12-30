@@ -137,8 +137,15 @@ Data attributes that can be added to HTML elements.
 
 ## Animations <a name="animations"></a>
 
-Animations that can be added to an element
-|Style | Directions|
-|-------| ----------|
-|_Fade_ | `fade-in`, `fade-in-up`, `fade-in-down`, `fade-in-right`, `fade-in-left`|
-|_Slide_| `slide-in`, `slide-in-up`, `slide-in-down`, `slide-in-right`, `slide-in-left`|
+Animations are made up of the `type`, _e.g. fade_; the `action`, _wether it's entering or leaving_ and the `direction`. e.g. `fade-enter-top`
+
+| Type           | Action          | Direction                   |
+| -------------- | --------------- | --------------------------- |
+| `fade` `slide` | `enter` `leave` | `top` `down` `left` `right` |
+
+Animations that can be added to an element.
+
+| Type    | Animation                                                                                    |
+| ------- | -------------------------------------------------------------------------------------------- |
+| _Fade_  | `fade-enter`, `fade-enter-up`, `fade-enter-down`, `fade-enter-right`, `fade-enter-left`      |
+| _Slide_ | `slide-enter`, `slide-enter-up`, `slide-enter-down`, `slide-enter-right`, `slide-enter-left` |
