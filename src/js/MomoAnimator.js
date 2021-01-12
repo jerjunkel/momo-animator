@@ -121,7 +121,7 @@ class Thenable {
         this._options.add(options);
         return this;
     }
-    animate() {
+    run() {
         var _a, _b, _c;
         let option = this._options.next();
         let timer;
@@ -135,7 +135,7 @@ class Thenable {
         timer = setTimeout(() => {
             el.removeAttribute("style");
             clearTimeout(timer);
-            this.animate();
+            this.run();
         }, duration + delay + 100);
         el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
         console.log(el.style.animation);
