@@ -24,7 +24,7 @@ export default class MomoAnimator {
         }
         else {
             const el = this._el;
-            // this._animate(el);
+            this._animate(el);
         }
     }
     then(options) {
@@ -62,7 +62,7 @@ export default class MomoAnimator {
         //   Observer for all momo elements in parent
         const animationObserverCallback = (entry) => {
             const el = entry.target;
-            // this._animate(el);
+            this._animate(el);
         };
         // Animation observer
         this._createObserver(this._el, animationObserverCallback);

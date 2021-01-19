@@ -33,7 +33,7 @@ export default class MomoAnimator {
       });
     } else {
       const el = this._el as HTMLElement;
-      // this._animate(el);
+      this._animate(el);
     }
   }
 
@@ -78,7 +78,7 @@ export default class MomoAnimator {
     //   Observer for all momo elements in parent
     const animationObserverCallback = (entry: IntersectionObserverEntry) => {
       const el = entry.target as HTMLElement;
-      // this._animate(el);
+      this._animate(el);
     };
 
     // Animation observer
