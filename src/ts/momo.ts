@@ -1,6 +1,7 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
 import { MomoOptions } from "./MomoOptions";
+import { MomoElementType } from "./MomoElementType";
 
 class Momo {
   private _instance: Momo | null = null;
@@ -38,7 +39,14 @@ class Momo {
     const validOptions =
       options == null ? this._options : this._checkOptions(options!);
 
-    return new MomoAnimator(el, validOptions);
+    return new MomoAnimator(
+      new MomoElement(
+        el,
+        validOptions,
+        MomoElementType.Item,
+        Momo.generateUUID()
+      )
+    );
   }
 
   createAnimatableGroup(selector: string, options?: MomoOptions): MomoAnimator {
@@ -56,7 +64,14 @@ class Momo {
       validOptions = { ...validOptions, staggerBy };
     }
 
-    return new MomoAnimator(momoElements, validOptions);
+    return new MomoAnimator(
+      new MomoElement(
+        el,
+        validOptions,
+        MomoElementType.Group,
+        Momo.generateUUID()
+      )
+    );
   }
 
   static generateUUID() {

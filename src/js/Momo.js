@@ -1,4 +1,6 @@
 import MomoAnimator from "./MomoAnimator.js";
+import MomoElement from "./MomoElement.js";
+import { MomoElementType } from "./MomoElementType";
 class Momo {
     constructor() {
         this._instance = null;
@@ -28,7 +30,7 @@ class Momo {
         if (!el.classList.contains("momo"))
             throw Error(`Element with selector ${selector} is missing Momo class`);
         const validOptions = options == null ? this._options : this._checkOptions(options);
-        return new MomoAnimator(el, validOptions);
+        return new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Item, Momo.generateUUID()));
     }
     createAnimatableGroup(selector, options) {
         const el = document.querySelector(selector);
@@ -40,7 +42,7 @@ class Momo {
             const staggerBy = options === null || options === void 0 ? void 0 : options.staggerBy;
             validOptions = Object.assign(Object.assign({}, validOptions), { staggerBy });
         }
-        return new MomoAnimator(momoElements, validOptions);
+        return new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Group, Momo.generateUUID()));
     }
     static generateUUID() {
         var d = new Date().getTime();

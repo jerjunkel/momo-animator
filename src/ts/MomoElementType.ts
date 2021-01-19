@@ -1,4 +1,4 @@
-enum MomoElementType {
-  Item,
-  Group,
+export enum MomoElementType {
+  Item = "Item",
+  Group = "Group",
 }
