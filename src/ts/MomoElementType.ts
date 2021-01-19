@@ -1,0 +1,4 @@
+enum MomoElementType {
+  Item,
+  Group,
+}
