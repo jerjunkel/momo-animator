@@ -1,8 +1,13 @@
 import LinkedList from "./LinkedList";
 export default class MomoAnimator {
     constructor(element) {
+        this._children = [];
         this._element = element;
         this._options = new LinkedList(element.options);
+        if (element.type == "Group") {
+            const parent = this._element.element;
+            this._children = Array.from(parent.querySelectorAll(".momo"));
+        }
     }
     get id() {
         return this._element.key;
@@ -22,13 +27,24 @@ export default class MomoAnimator {
         const duration = option.duration || ((_a = this._options.firstItem) === null || _a === void 0 ? void 0 : _a.duration);
         const delay = option.delay || ((_b = this._options.firstItem) === null || _b === void 0 ? void 0 : _b.delay);
         const curve = option.curve || ((_c = this._options.firstItem) === null || _c === void 0 ? void 0 : _c.curve);
+        let childrenAnimationDuration = 0;
+        if (this._element.type == "Group" && option.staggerBy) {
+            const offset = option.staggerBy;
+            childrenAnimationDuration = offset * this._children.length;
+            this._children.forEach((child, index) => {
+                const childAnimation = child.getAttribute("data-animation") || animation;
+                child.style.animation = `momo-${childAnimation} ${curve} ${duration}ms ${offset * index}ms forwards`;
+            });
+        }
+        else {
+            el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
+            console.log(el.style.animation);
+        }
         timer = setTimeout(() => {
-            el.removeAttribute("style");
+            el.style.removeProperty("animation");
             clearTimeout(timer);
             this.run();
-        }, duration + delay + 100);
-        el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
-        console.log(el.style.animation);
+        }, duration + delay + childrenAnimationDuration + 100);
     }
 }
 // export default class MomoAnimator {

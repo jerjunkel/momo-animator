@@ -25,21 +25,14 @@
       </nav>
       <div class="header__content">
         <div class="header__text">
-          <h1 class="header__cta momo" data-animation="fade-enter-right">
-            Come try Momo Animations
-          </h1>
-          <p class="header__description momo" data-animation="fade-enter-right">
+          <h1 class="header__cta momo">Come try Momo Animations</h1>
+          <p class="header__description momo">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
             corrupti nisi reprehenderit, illo quis voluptate placeat eum. Magni,
             fugit. Labore architecto obcaecati enim, eius nemo ipsam nisi.
             Voluptates, non illum.
           </p>
-          <a
-            href=""
-            class="btn btn__primary momo"
-            data-animation="fade-enter-bottom"
-            >Get Momo</a
-          >
+          <a href="" class="btn btn__primary momo">Get Momo</a>
         </div>
         <img
           src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9d57c2b3-8ae8-469d-bad1-1e90c5cef95f/d17cyfq-5ec30536-3a28-4291-98a8-580aba9d32f4.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvOWQ1N2MyYjMtOGFlOC00NjlkLWJhZDEtMWU5MGM1Y2VmOTVmXC9kMTdjeWZxLTVlYzMwNTM2LTNhMjgtNDI5MS05OGE4LTU4MGFiYTlkMzJmNC5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.MSAcPwPyiznPU4Ab9YsVIQu4Bkpi5e9WQ9LchS6akRM"
@@ -72,8 +65,18 @@
 
       const headerText = Momo.createAnimatableGroup(".header__text", {
         curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+        animation: "fade-enter-right",
+        duration: 1500,
         staggerBy: 400,
       });
+      headerText
+        .then({
+          curve: "ease",
+          animation: "fade-leave-right",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .run();
     </script>
   </body>
 </html>

@@ -54,14 +54,14 @@ class Momo {
         return uuid;
     }
     _checkOptions(options) {
-        let { duration, delay, curve } = options;
+        let { duration, delay, curve, animation } = options;
         if (!duration)
             duration = this._options.duration;
         if (!delay)
             delay = this._options.delay;
         if (!curve)
             curve = this._options.curve;
-        return { duration, delay, curve };
+        return { duration, delay, curve, animation };
     }
 }
 export default new Momo();

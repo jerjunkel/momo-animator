@@ -5,10 +5,16 @@ import MomoElement from "./MomoElement";
 export default class MomoAnimator {
   private _element: MomoElement;
   private _options: LinkedList<MomoOptions>;
+  private _children: HTMLElement[] = [];
 
   constructor(element: MomoElement) {
     this._element = element;
     this._options = new LinkedList<MomoOptions>(element.options);
+
+    if (element.type == "Group") {
+      const parent = this._element.element;
+      this._children = Array.from(parent.querySelectorAll(".momo"));
+    }
   }
 
   get id(): string {
@@ -27,20 +33,33 @@ export default class MomoAnimator {
     if (option == null) return;
 
     const el = this._element.element;
-
     const animation = option.animation || el.getAttribute("data-animation");
     const duration = option.duration || this._options.firstItem?.duration;
     const delay = option.delay || this._options.firstItem?.delay;
     const curve = option.curve || this._options.firstItem?.curve;
+    let childrenAnimationDuration = 0;
 
+    if (this._element.type == "Group" && option.staggerBy) {
+      const offset = option.staggerBy;
+      childrenAnimationDuration = offset * this._children.length;
+
+      this._children.forEach((child, index) => {
+        const childAnimation =
+          child.getAttribute("data-animation") || animation;
+
+        child.style.animation = `momo-${childAnimation} ${curve} ${duration}ms ${
+          offset * index
+        }ms forwards`;
+      });
+    } else {
+      el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
+      console.log(el.style.animation);
+    }
     timer = setTimeout(() => {
-      el.removeAttribute("style");
+      el.style.removeProperty("animation");
       clearTimeout(timer);
       this.run();
-    }, duration! + delay! + 100);
-
-    el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
-    console.log(el.style.animation);
+    }, duration! + delay! + childrenAnimationDuration + 100);
   }
 }
 
