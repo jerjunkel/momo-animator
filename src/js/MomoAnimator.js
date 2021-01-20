@@ -8,6 +8,22 @@ export default class MomoAnimator {
             const parent = this._element.element;
             this._children = Array.from(parent.querySelectorAll(".momo"));
         }
+        // Prep for fade
+        const startAnimation = this._element.element.getAttribute("data-animation") ||
+            this._element.options.animation;
+        const fadeRegex = new RegExp(/^fade/g);
+        const hasFadeAnimation = fadeRegex.test(startAnimation);
+        if (hasFadeAnimation && this._element.type == "Item") {
+            this._element.element.style.opacity = "0";
+        }
+        if (hasFadeAnimation && this._element.type == "Group") {
+            this._children.forEach((child) => {
+                const animation = child.getAttribute("data-animation");
+                if (hasFadeAnimation || fadeRegex.test(animation)) {
+                    child.style.opacity = "0";
+                }
+            });
+        }
     }
     get id() {
         return this._element.key;
@@ -41,8 +57,14 @@ export default class MomoAnimator {
             console.log(el.style.animation);
         }
         timer = setTimeout(() => {
-            el.style.removeProperty("animation");
             clearTimeout(timer);
+            // Clean up code
+            this._element.element.style.removeProperty("animation");
+            this._element.element.style.removeProperty("opacity");
+            this._children.forEach((child) => {
+                child.style.removeProperty("animation");
+                child.style.removeProperty("opacity");
+            });
             this.run();
         }, duration + delay + childrenAnimationDuration + 100);
     }
