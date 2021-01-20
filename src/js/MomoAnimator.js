@@ -28,6 +28,9 @@ export default class MomoAnimator {
     get id() {
         return this._element.key;
     }
+    get htmlElement() {
+        return this._element.element;
+    }
     then(options) {
         this._options.add(options);
         return this;

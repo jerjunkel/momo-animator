@@ -1,10 +1,12 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
+import MomoObserver from "./MomoObserver.js";
 import { MomoElementType } from "./MomoElementType";
 class Momo {
     constructor() {
         this._instance = null;
         this._options = { duration: 1000, delay: 0, curve: "linear" };
+        this._observer = new MomoObserver();
         if (!this._instance) {
             this._instance = this;
             Object.freeze(this._instance);
@@ -30,7 +32,9 @@ class Momo {
         if (!el.classList.contains("momo"))
             throw Error(`Element with selector ${selector} is missing Momo class`);
         const validOptions = options == null ? this._options : this._checkOptions(options);
-        return new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Item, Momo.generateUUID()));
+        const momoAnimator = new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Item, Momo.generateUUID()));
+        this._observer.add(momoAnimator);
+        return momoAnimator;
     }
     createAnimatableGroup(selector, options) {
         const el = document.querySelector(selector);
@@ -42,7 +46,9 @@ class Momo {
             const staggerBy = options === null || options === void 0 ? void 0 : options.staggerBy;
             validOptions = Object.assign(Object.assign({}, validOptions), { staggerBy });
         }
-        return new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Group, Momo.generateUUID()));
+        const momoAnimator = new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Group, Momo.generateUUID()));
+        this._observer.add(momoAnimator);
+        return momoAnimator;
     }
     static generateUUID() {
         var d = new Date().getTime();

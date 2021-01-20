@@ -5,28 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Momo Animations</title>
     <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/animation.css" />
+    <script src="/dist/momo.umd.js"></script>
   </head>
   <body>
-    <section id="slide" class="section">
-      <h1 class="section__title momo" data-animation="slide-in-right">
+    <section id="slide" class="section momo">
+      <h1 class="section__title momo" data-animation="slide-enter-right">
         Slide In Animations
       </h1>
       <div class="section__items">
-        <p class="momo" data-animation="slide-in-right">Slide In From Right</p>
-        <p class="momo" data-animation="slide-in-left">Slide In From Left</p>
-        <p class="momo" data-animation="slide-in-up">Slide In From Bottom</p>
-        <p class="momo" data-animation="slide-in-down">Slide In From Top</p>
+        <p class="momo" data-animation="slide-enter-right">
+          Slide In From Right
+        </p>
+        <p class="momo" data-animation="slide-enter-left">Slide In From Left</p>
+        <p class="momo" data-animation="slide-enter-bottom">
+          Slide In From Bottom
+        </p>
+        <p class="momo" data-animation="slide-enter-top">Slide In From Top</p>
       </div>
     </section>
     <section id="fade" class="section">
-      <h1 class="section__title momo" data-animation="fade-in">
+      <h1 class="section__title momo" data-animation="fade-enter">
         Fade In Animations
       </h1>
       <div class="section__items">
-        <p class="momo" data-animation="fade-in-right">Fade In From Right</p>
-        <p class="momo" data-animation="fade-in-left">Fade In From Left</p>
-        <p class="momo" data-animation="fade-in-up">Fade In From Bottom</p>
-        <p class="momo" data-animation="fade-in-down">Fade In From Top</p>
+        <p class="momo" data-animation="fade-enter-right">Fade In From Right</p>
+        <p class="momo" data-animation="fade-enter-left">Fade In From Left</p>
+        <p class="momo" data-animation="fade-enter-bottom">
+          Fade In From Bottom
+        </p>
+        <p class="momo" data-animation="fade-enter-top">Fade In From Top</p>
       </div>
     </section>
     <section id="delay" class="section">
@@ -36,66 +44,94 @@
       <div class="section__items">
         <p
           class="momo"
-          data-animation="fade-in-right"
+          data-animation="fade-enter-right"
           data-animation-delay="2000"
         >
           Fade In From Right
         </p>
         <p
           class="momo"
-          data-animation="fade-in-left"
+          data-animation="fade-enter-left"
           data-animation-delay="100"
         >
           Fade In From Left
         </p>
-        <p class="momo" data-animation="fade-in-up" data-animation-delay="800">
+        <p
+          class="momo"
+          data-animation="fade-enter-bottom"
+          data-animation-delay="800"
+        >
           Fade In From Bottom
         </p>
         <p
           class="momo"
-          data-animation="fade-in-down"
+          data-animation="fade-enter-top"
           data-animation-delay="1000"
         >
           Fade In From Top
         </p>
       </div>
     </section>
+
     <section id="duration" class="section">
-      <h1 class="section__title momo" data-animation="slide-in-right">
+      <h1 class="section__title momo" data-animation="slide-enter-right">
         Slide In With Duration
       </h1>
       <div class="section__items">
         <p
           class="momo"
-          data-animation="slide-in-right"
+          data-animation="slide-enter-right"
           data-animation-duration="300"
         >
           Slide In From Right
         </p>
         <p
           class="momo"
-          data-animation="slide-in-left"
+          data-animation="slide-enter-left"
           data-animation-duration="3000"
         >
           Slide In From Left
         </p>
-        <p class="momo" data-animation="slide-in-up">Slide In From Bottom</p>
+        <p class="momo" data-animation="slide-enter-bottom">
+          Slide In From Bottom
+        </p>
         <p
           class="momo"
-          data-animation="slide-in-down"
+          data-animation="slide-enter-top"
           data-animation-duration="5000"
         >
           Slide In From Top
         </p>
       </div>
     </section>
+    <section id="group-animation" class="section">
+      <h1 class="section__title momo" data-animation="fade-enter-top">
+        Slide In With Duration
+      </h1>
+      <div class="section__items">
+        <p class="momo">Element 1</p>
+        <p class="momo">Element 2</p>
+        <p class="momo">Element 3</p>
+        <p
+          class="momo"
+          data-animation="fade-enter-bottom"
+          data-animation-duration="5000"
+        >
+          Element 4
+        </p>
+      </div>
+    </section>
     <script src="/dist/momo.umd.js"></script>
     <script>
-      Momo.init({
+      Momo.setGlobalOptions({
         duration: 2000,
         curve: "cubic-bezier(0.65, 0, 0.35, 1)",
       });
-      const body = Momo.animateGroup("body");
+      const momoGroup = Momo.createAnimatableGroup("#group-animation", {
+        duration: 1200,
+        animation: "fade-enter-right",
+        staggerBy: 500,
+      });
     </script>
   </body>
 </html>

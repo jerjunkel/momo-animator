@@ -43,6 +43,10 @@ export default class MomoAnimator {
     return this._element.key;
   }
 
+  get htmlElement(): HTMLElement {
+    return this._element.element;
+  }
+
   then(options: MomoOptions): MomoAnimator {
     this._options.add(options);
     return this;

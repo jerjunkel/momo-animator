@@ -1,11 +1,13 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
+import MomoObserver from "./MomoObserver.js";
 import { MomoOptions } from "./MomoOptions";
 import { MomoElementType } from "./MomoElementType";
 
 class Momo {
   private _instance: Momo | null = null;
   private _options: MomoOptions = { duration: 1000, delay: 0, curve: "linear" };
+  private _observer: MomoObserver = new MomoObserver();
 
   constructor() {
     if (!this._instance) {
@@ -39,7 +41,7 @@ class Momo {
     const validOptions =
       options == null ? this._options : this._checkOptions(options!);
 
-    return new MomoAnimator(
+    const momoAnimator = new MomoAnimator(
       new MomoElement(
         el,
         validOptions,
@@ -47,6 +49,9 @@ class Momo {
         Momo.generateUUID()
       )
     );
+    this._observer.add(momoAnimator);
+
+    return momoAnimator;
   }
 
   createAnimatableGroup(selector: string, options?: MomoOptions): MomoAnimator {
@@ -64,7 +69,7 @@ class Momo {
       validOptions = { ...validOptions, staggerBy };
     }
 
-    return new MomoAnimator(
+    const momoAnimator = new MomoAnimator(
       new MomoElement(
         el,
         validOptions,
@@ -72,6 +77,9 @@ class Momo {
         Momo.generateUUID()
       )
     );
+    this._observer.add(momoAnimator);
+
+    return momoAnimator;
   }
 
   static generateUUID() {
