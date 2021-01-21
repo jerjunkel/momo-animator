@@ -65,8 +65,8 @@
           duration: 2000,
           animation: "fade-enter-right",
           curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-        })
-        .run();
+        });
+      // .run();
 
       const headerText = Momo.createAnimatableGroup(".header__text", {
         curve: "cubic-bezier(0.83, 0, 0.17, 1)",
@@ -74,14 +74,14 @@
         duration: 1500,
         staggerBy: 400,
       });
-      headerText
-        // .then({
-        //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-        //   animation: "fade-leave-right",
-        //   duration: 1500,
-        //   staggerBy: 400,
-        // })
-        .run();
+      headerText;
+      // .then({
+      //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+      //   animation: "fade-leave-right",
+      //   duration: 1500,
+      //   staggerBy: 400,
+      // })
+      // .run();
     </script>
   </body>
 </html>
