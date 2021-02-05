@@ -52,29 +52,30 @@
     <script>
       Momo.setGlobalOptions({
         duration: 1000,
+        animatePage: true,
       });
 
-      const momoImage = Momo.createAnimatable(".header__img", {
-        curve: "ease-in-out",
-      });
-      momoImage
-        .then({ duration: 2000, animation: "fade-leave" })
-        .then({ duration: 2000, animation: "fade-enter-top" })
-        .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
-        .then({
-          duration: 2000,
-          animation: "fade-enter-right",
-          curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-        });
+      // const momoImage = Momo.createAnimatable(".header__img", {
+      //   curve: "ease-in-out",
+      // });
+      // momoImage
+      //   .then({ duration: 2000, animation: "fade-leave" })
+      //   .then({ duration: 2000, animation: "fade-enter-top" })
+      //   .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
+      //   .then({
+      //     duration: 2000,
+      //     animation: "fade-enter-right",
+      //     curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+      //   });
       // .run();
 
-      const headerText = Momo.createAnimatableGroup(".header__text", {
-        curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-        animation: "fade-enter-right",
-        duration: 1500,
-        staggerBy: 400,
-      });
-      headerText;
+      // const headerText = Momo.createAnimatableGroup(".header__text", {
+      //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+      //   animation: "fade-enter-right",
+      //   duration: 1500,
+      //   staggerBy: 400,
+      // });
+      // headerText;
       // .then({
       //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
       //   animation: "fade-leave-right",

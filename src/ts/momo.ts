@@ -1,12 +1,18 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
 import MomoObserver from "./MomoObserver.js";
-import { MomoOptions } from "./MomoOptions";
+import { MomoOptions, MomoGlobalOptions } from "./MomoOptions";
 import { MomoElementType } from "./MomoElementType";
 
 class Momo {
   private _instance: Momo | null = null;
-  private _options: MomoOptions = { duration: 1000, delay: 0, curve: "linear" };
+  private _options: MomoGlobalOptions = {
+    duration: 1000,
+    delay: 0,
+    curve: "linear",
+    useIntersection: true,
+    animatePage: false,
+  };
   private _observer: MomoObserver = new MomoObserver();
 
   constructor() {
@@ -21,14 +27,32 @@ class Momo {
     return this._instance;
   }
 
-  setGlobalOptions(options: MomoOptions) {
-    const validOptions = this._checkOptions(options);
+  setGlobalOptions(options: MomoGlobalOptions) {
+    const validOptions = this._checkGlobalOptions(options);
     this._options.delay = validOptions.delay;
     this._options.duration = validOptions.duration;
     this._options.curve = validOptions.curve;
+    this._options.animatePage = validOptions.animatePage;
+    this._options.useIntersection = validOptions.useIntersection;
+
+    if (options.animatePage) {
+      const elements = Array.from(document.querySelectorAll(".momo"));
+      const momoElement = elements.map((element) => {
+        return new MomoAnimator(
+          new MomoElement(
+            element as HTMLElement,
+            validOptions,
+            MomoElementType.Item,
+            Momo.generateUUID()
+          )
+        );
+      });
+      momoElement.forEach((el) => this._observer.add(el));
+      console.log(momoElement);
+    }
   }
 
-  getGlobalOptions(): MomoOptions {
+  getGlobalOptions(): MomoGlobalOptions {
     return this._options;
   }
 
@@ -93,6 +117,24 @@ class Momo {
       }
     );
     return uuid;
+  }
+
+  private _checkGlobalOptions(options: MomoGlobalOptions): MomoGlobalOptions {
+    let {
+      duration,
+      delay,
+      curve,
+      animation,
+      animatePage,
+      useIntersection,
+    } = options;
+    if (!duration) duration = this._options.duration;
+    if (!delay) delay = this._options.delay;
+    if (!animatePage) animatePage = this._options.animatePage;
+    if (!useIntersection) useIntersection = this._options.useIntersection;
+    if (!curve) curve = this._options.curve;
+
+    return { duration, delay, curve, animation, useIntersection, animatePage };
   }
 
   private _checkOptions(options: MomoOptions): MomoOptions {

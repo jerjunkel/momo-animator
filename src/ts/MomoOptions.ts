@@ -5,3 +5,8 @@ export type MomoOptions = {
   staggerBy?: number;
   animation?: string;
 };
+
+export type MomoGlobalOptions = MomoOptions & {
+  useIntersection: boolean;
+  animatePage: boolean;
+};

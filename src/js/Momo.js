@@ -5,7 +5,13 @@ import { MomoElementType } from "./MomoElementType";
 class Momo {
     constructor() {
         this._instance = null;
-        this._options = { duration: 1000, delay: 0, curve: "linear" };
+        this._options = {
+            duration: 1000,
+            delay: 0,
+            curve: "linear",
+            useIntersection: true,
+            animatePage: false,
+        };
         this._observer = new MomoObserver();
         if (!this._instance) {
             this._instance = this;
@@ -17,10 +23,20 @@ class Momo {
         return this._instance;
     }
     setGlobalOptions(options) {
-        const validOptions = this._checkOptions(options);
+        const validOptions = this._checkGlobalOptions(options);
         this._options.delay = validOptions.delay;
         this._options.duration = validOptions.duration;
         this._options.curve = validOptions.curve;
+        this._options.animatePage = validOptions.animatePage;
+        this._options.useIntersection = validOptions.useIntersection;
+        if (options.animatePage) {
+            const elements = Array.from(document.querySelectorAll(".momo"));
+            const momoElement = elements.map((element) => {
+                return new MomoAnimator(new MomoElement(element, validOptions, MomoElementType.Item, Momo.generateUUID()));
+            });
+            momoElement.forEach((el) => this._observer.add(el));
+            console.log(momoElement);
+        }
     }
     getGlobalOptions() {
         return this._options;
@@ -58,6 +74,20 @@ class Momo {
             return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
         });
         return uuid;
+    }
+    _checkGlobalOptions(options) {
+        let { duration, delay, curve, animation, animatePage, useIntersection, } = options;
+        if (!duration)
+            duration = this._options.duration;
+        if (!delay)
+            delay = this._options.delay;
+        if (!animatePage)
+            animatePage = this._options.animatePage;
+        if (!useIntersection)
+            useIntersection = this._options.useIntersection;
+        if (!curve)
+            curve = this._options.curve;
+        return { duration, delay, curve, animation, useIntersection, animatePage };
     }
     _checkOptions(options) {
         let { duration, delay, curve, animation } = options;
