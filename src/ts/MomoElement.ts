@@ -1,15 +1,15 @@
-import { MomoOptions } from "./MomoOptions";
+import { MomoAnimatorOptions } from "./MomoOptions";
 import { MomoElementType } from "./MomoElementType";
 
 export default class MomoElement {
   private _el: HTMLElement;
-  private _options: MomoOptions;
+  private _options: MomoAnimatorOptions;
   private _type: MomoElementType;
   private _key: string;
 
   constructor(
     el: HTMLElement,
-    options: MomoOptions,
+    options: MomoAnimatorOptions,
     type: MomoElementType,
     key: string
   ) {
@@ -24,7 +24,7 @@ export default class MomoElement {
     return this._el;
   }
 
-  get options(): MomoOptions {
+  get options(): MomoAnimatorOptions {
     return this._options;
   }
 

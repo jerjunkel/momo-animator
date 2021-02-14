@@ -47,7 +47,7 @@ class Momo {
             throw Error(`No element found with selector ${selector}`);
         if (!el.classList.contains("momo"))
             throw Error(`Element with selector ${selector} is missing Momo class`);
-        const validOptions = options == null ? this._options : this._checkOptions(options);
+        const validOptions = options == null ? this._options : this._checkAnimatorOptions(options);
         const momoAnimator = new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Item, Momo.generateUUID()));
         this._observer.add(momoAnimator);
         return momoAnimator;
@@ -57,7 +57,7 @@ class Momo {
         if (!el)
             throw Error(`No element found with selector ${selector}`);
         const momoElements = Array.from(el.querySelectorAll(".momo"));
-        let validOptions = options == null ? this._options : this._checkOptions(options);
+        let validOptions = options == null ? this._options : this._checkAnimatorOptions(options);
         if (options === null || options === void 0 ? void 0 : options.staggerBy) {
             const staggerBy = options === null || options === void 0 ? void 0 : options.staggerBy;
             validOptions = Object.assign(Object.assign({}, validOptions), { staggerBy });
@@ -89,7 +89,7 @@ class Momo {
             curve = this._options.curve;
         return { duration, delay, curve, animation, useIntersection, animatePage };
     }
-    _checkOptions(options) {
+    _checkAnimatorOptions(options) {
         let { duration, delay, curve, animation } = options;
         if (!duration)
             duration = this._options.duration;

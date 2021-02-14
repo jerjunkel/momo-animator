@@ -1,7 +1,7 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
 import MomoObserver from "./MomoObserver.js";
-import { MomoOptions, MomoGlobalOptions } from "./MomoOptions";
+import { MomoAnimatorOptions, MomoGlobalOptions } from "./MomoOptions";
 import { MomoElementType } from "./MomoElementType";
 
 class Momo {
@@ -56,14 +56,17 @@ class Momo {
     return this._options;
   }
 
-  createAnimatable(selector: string, options?: MomoOptions): MomoAnimator {
+  createAnimatable(
+    selector: string,
+    options?: MomoAnimatorOptions
+  ): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     if (!el.classList.contains("momo"))
       throw Error(`Element with selector ${selector} is missing Momo class`);
 
     const validOptions =
-      options == null ? this._options : this._checkOptions(options!);
+      options == null ? this._options : this._checkAnimatorOptions(options!);
 
     const momoAnimator = new MomoAnimator(
       new MomoElement(
@@ -78,7 +81,10 @@ class Momo {
     return momoAnimator;
   }
 
-  createAnimatableGroup(selector: string, options?: MomoOptions): MomoAnimator {
+  createAnimatableGroup(
+    selector: string,
+    options?: MomoAnimatorOptions
+  ): MomoAnimator {
     const el = document.querySelector(selector) as HTMLElement;
     if (!el) throw Error(`No element found with selector ${selector}`);
     const momoElements = Array.from(
@@ -86,7 +92,7 @@ class Momo {
     ) as HTMLElement[];
 
     let validOptions =
-      options == null ? this._options : this._checkOptions(options!);
+      options == null ? this._options : this._checkAnimatorOptions(options!);
 
     if (options?.staggerBy) {
       const staggerBy = options?.staggerBy;
@@ -137,7 +143,9 @@ class Momo {
     return { duration, delay, curve, animation, useIntersection, animatePage };
   }
 
-  private _checkOptions(options: MomoOptions): MomoOptions {
+  private _checkAnimatorOptions(
+    options: MomoAnimatorOptions
+  ): MomoAnimatorOptions {
     let { duration, delay, curve, animation } = options;
     if (!duration) duration = this._options.duration;
     if (!delay) delay = this._options.delay;

@@ -1,4 +1,4 @@
-export type MomoOptions = {
+export type MomoAnimatorOptions = {
   duration: number;
   delay: number;
   curve: string;
@@ -6,7 +6,7 @@ export type MomoOptions = {
   animation?: string;
 };
 
-export type MomoGlobalOptions = MomoOptions & {
+export type MomoGlobalOptions = MomoAnimatorOptions & {
   useIntersection: boolean;
   animatePage: boolean;
 };

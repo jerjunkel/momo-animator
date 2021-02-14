@@ -1,15 +1,15 @@
-import { MomoOptions } from "./MomoOptions";
+import { MomoAnimatorOptions } from "./MomoOptions";
 import LinkedList from "./LinkedList";
 import MomoElement from "./MomoElement";
 
 export default class MomoAnimator {
   private _element: MomoElement;
-  private _options: LinkedList<MomoOptions>;
+  private _options: LinkedList<MomoAnimatorOptions>;
   private _children: HTMLElement[] = [];
 
   constructor(element: MomoElement) {
     this._element = element;
-    this._options = new LinkedList<MomoOptions>(element.options);
+    this._options = new LinkedList<MomoAnimatorOptions>(element.options);
 
     if (element.type == "Group") {
       const parent = this._element.element;
@@ -47,7 +47,7 @@ export default class MomoAnimator {
     return this._element.element;
   }
 
-  then(options: MomoOptions): MomoAnimator {
+  then(options: MomoAnimatorOptions): MomoAnimator {
     this._options.add(options);
     return this;
   }
