@@ -4,7 +4,7 @@ import MomoObserver from "./MomoObserver.js";
 import { MomoAnimatorOptions, MomoGlobalOptions } from "./MomoOptions";
 import { MomoElementType } from "./MomoElementType";
 
-class Momo {
+export default class Momo {
   private _instance: Momo | null = null;
   private _options: MomoGlobalOptions = {
     duration: 1000,
@@ -154,5 +154,3 @@ class Momo {
     return { duration, delay, curve, animation };
   }
 }
-
-export default new Momo();

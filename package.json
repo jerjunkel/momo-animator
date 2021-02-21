@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "prebuild": "rm -rf dist",
-    "build": "rollup -c"
+    "build": "npm run prebuild && rollup -c"
   },
   "repository": {
     "type": "git",
