@@ -10,9 +10,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <link rel="stylesheet" href="/src/css/animation.css" />
-    <script src="/dist/momo.umd.js"></script>
+    <link rel="stylesheet" href="../../src/css/style.css" />
+    <link rel="stylesheet" href="../../src/css/animation.css" />
+    <script src="../../dist/momo.umd.js"></script>
   </head>
   <body>
     <header class="header">
@@ -52,36 +52,54 @@
     <script>
       Momo.setGlobalOptions({
         duration: 1000,
-        animatePage: true,
+        // animatePage: true,
       });
 
-      // const momoImage = Momo.createAnimatable(".header__img", {
-      //   curve: "ease-in-out",
-      // });
-      // momoImage
-      //   .then({ duration: 2000, animation: "fade-leave" })
-      //   .then({ duration: 2000, animation: "fade-enter-top" })
-      //   .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
-      //   .then({
-      //     duration: 2000,
-      //     animation: "fade-enter-right",
-      //     curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-      //   });
+      const momoImage = Momo.createAnimatable(".header__img", {
+        curve: "ease-in-out",
+      });
+      momoImage
+        .then({ duration: 2000, animation: "fade-leave" })
+        .then({ duration: 2000, animation: "fade-enter-top" })
+        .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
+        .then({
+          duration: 2000,
+          animation: "fade-enter-right",
+          curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+        });
       // .run();
 
-      // const headerText = Momo.createAnimatableGroup(".header__text", {
-      //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-      //   animation: "fade-enter-right",
-      //   duration: 1500,
-      //   staggerBy: 400,
-      // });
-      // headerText;
-      // .then({
-      //   curve: "cubic-bezier(0.83, 0, 0.17, 1)",
-      //   animation: "fade-leave-right",
-      //   duration: 1500,
-      //   staggerBy: 400,
-      // })
+      const headerText = Momo.createAnimatableGroup(".header__text", {
+        curve: "ease-in-out",
+        animation: "fade-enter-right",
+        duration: 1500,
+        staggerBy: 400,
+      });
+      headerText
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-leave-right",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-enter-top",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-leave-top",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-enter-bottom",
+          duration: 1500,
+          staggerBy: 400,
+        });
       // .run();
     </script>
   </body>

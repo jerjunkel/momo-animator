@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Momo Animations</title>
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <link rel="stylesheet" href="/src/css/animation.css" />
-    <script src="/dist/momo.umd.js"></script>
+    <link rel="stylesheet" href="../../src/css/style.css" />
+    <link rel="stylesheet" href="../../src/css/animation.css" />
+    <script src="../../dist/momo.umd.js"></script>
   </head>
   <body>
-    <section id="slide" class="section momo">
+    <section id="slide" class="section">
       <h1 class="section__title momo" data-animation="slide-enter-right">
         Slide In Animations
       </h1>
@@ -38,7 +38,7 @@
       </div>
     </section>
     <section id="delay" class="section">
-      <h1 class="section__title momo" data-animation="fade-in">
+      <h1 class="section__title momo" data-animation="fade-enter">
         Fade In with Delay
       </h1>
       <div class="section__items">
@@ -104,34 +104,38 @@
         </p>
       </div>
     </section>
-    <section id="group-animation" class="section">
-      <h1 class="section__title momo" data-animation="fade-enter-top">
+    <section class="section">
+      <h1 class="section__title momo" data-animation="fade-enter-left">
         Slide In With Duration
       </h1>
-      <div class="section__items">
+      <div id="group-animation" class="section__items momo group">
         <p class="momo">Element 1</p>
         <p class="momo">Element 2</p>
         <p class="momo">Element 3</p>
-        <p
-          class="momo"
-          data-animation="fade-enter-bottom"
-          data-animation-duration="5000"
-        >
-          Element 4
-        </p>
+        <p class="momo">Element 4</p>
       </div>
     </section>
     <script src="/dist/momo.umd.js"></script>
     <script>
       Momo.setGlobalOptions({
-        duration: 2000,
+        duration: 1000,
+        animatePage: true,
         curve: "cubic-bezier(0.65, 0, 0.35, 1)",
       });
       const momoGroup = Momo.createAnimatableGroup("#group-animation", {
-        duration: 1200,
+        duration: 500,
         animation: "fade-enter-right",
-        staggerBy: 500,
-      });
+        curve: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        staggerBy: 100,
+      })
+        .then({
+          animation: "fade-leave-top",
+          staggerBy: 0,
+        })
+        .then({
+          animation: "fade-enter-left",
+          staggerBy: 100,
+        });
     </script>
   </body>
 </html>

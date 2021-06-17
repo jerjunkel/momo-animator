@@ -10,6 +10,8 @@ export default class Momo {
     duration: 1000,
     delay: 0,
     curve: "linear",
+    animation: "fade-enter-bottom",
+    staggerBy: 100,
     useIntersection: true,
     animatePage: false,
   };
@@ -37,18 +39,40 @@ export default class Momo {
 
     if (options.animatePage) {
       const elements = Array.from(document.querySelectorAll(".momo"));
-      const momoElement = elements.map((element) => {
-        return new MomoAnimator(
-          new MomoElement(
-            element as HTMLElement,
-            validOptions,
-            MomoElementType.Item,
-            Momo.generateUUID()
+      const momoGroupItems = elements
+        .filter((el) => el.classList.contains("group"))
+        .forEach((el) => this.createAnimatableGroup(el as HTMLElement));
+
+      const momoItems = elements
+        .filter((el) => {
+          const parent = el.parentNode as HTMLElement;
+          if (
+            el.classList.contains("group") ||
+            (parent && parent.classList.contains("group"))
           )
-        );
-      });
-      momoElement.forEach((el) => this._observer.add(el));
-      console.log(momoElement);
+            return false;
+          return true;
+        })
+        .forEach((el) => this.createAnimatable(el as HTMLElement));
+
+      // const momoElements = [...momoGroupItems, ...momoItems];
+
+      // momoElements
+      //   .map((el) => new MomoAnimator(el))
+      //   .forEach((el) => this._observer.add(el));
+
+      // const momoElement = elements.map((element) => {
+      //   return new MomoAnimator(
+      //     new MomoElement(
+      //       element as HTMLElement,
+      //       validOptions,
+      //       MomoElementType.Item,
+      //       Momo.generateUUID()
+      //     )
+      //   );
+      // });
+      // momoElement.forEach((el) => this._observer.add(el));
+      // console.log(momoElement);
     }
   }
 
@@ -57,13 +81,19 @@ export default class Momo {
   }
 
   createAnimatable(
-    selector: string,
+    target: string | HTMLElement,
     options?: MomoAnimatorOptions
   ): MomoAnimator {
-    const el = document.querySelector(selector) as HTMLElement;
-    if (!el) throw Error(`No element found with selector ${selector}`);
+    let el;
+    if (typeof target == "string") {
+      el = document.querySelector(target) as HTMLElement;
+      if (!el) throw Error(`No element found with selector ${target}`);
+    } else {
+      el = target;
+    }
+
     if (!el.classList.contains("momo"))
-      throw Error(`Element with selector ${selector} is missing Momo class`);
+      throw Error(`Element is missing Momo class`);
 
     const validOptions =
       options == null ? this._options : this._checkAnimatorOptions(options!);
@@ -82,14 +112,16 @@ export default class Momo {
   }
 
   createAnimatableGroup(
-    selector: string,
+    target: string | HTMLElement,
     options?: MomoAnimatorOptions
   ): MomoAnimator {
-    const el = document.querySelector(selector) as HTMLElement;
-    if (!el) throw Error(`No element found with selector ${selector}`);
-    const momoElements = Array.from(
-      el!.querySelectorAll(".momo")
-    ) as HTMLElement[];
+    let el;
+    if (typeof target == "string") {
+      el = document.querySelector(target) as HTMLElement;
+      if (!el) throw Error(`No element found with selector ${target}`);
+    } else {
+      el = target;
+    }
 
     let validOptions =
       options == null ? this._options : this._checkAnimatorOptions(options!);
@@ -133,12 +165,14 @@ export default class Momo {
       animation,
       animatePage,
       useIntersection,
+      staggerBy,
     } = options;
     if (!duration) duration = this._options.duration;
     if (!delay) delay = this._options.delay;
     if (!animatePage) animatePage = this._options.animatePage;
     if (!useIntersection) useIntersection = this._options.useIntersection;
     if (!curve) curve = this._options.curve;
+    if (!staggerBy) staggerBy = this._options.staggerBy;
 
     return { duration, delay, curve, animation, useIntersection, animatePage };
   }

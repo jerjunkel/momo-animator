@@ -13,7 +13,7 @@ export default class MomoObserver {
 
           if (!momoID) return;
           const momoElement = this._momoElements.get(momoID);
-          momoElement?.run();
+          momoElement?.animate();
           observer.unobserve(entry.target);
         });
       },

@@ -52,14 +52,14 @@ export default class MomoAnimator {
     return this;
   }
 
-  run() {
+  animate() {
     let option = this._options.next();
     let timer: any;
 
     if (option == null) return;
 
     const el = this._element.element;
-    const animation = option.animation || el.getAttribute("data-animation");
+    const animation = el.getAttribute("data-animation") || option.animation;
     const duration = option.duration || this._options.firstItem?.duration;
     const delay = option.delay || this._options.firstItem?.delay;
     const curve = option.curve || this._options.firstItem?.curve;
@@ -67,10 +67,9 @@ export default class MomoAnimator {
 
     // Prep for fade
     const fadeRegex = new RegExp(/^fade-enter/g);
-
     const hasFadeAnimation = fadeRegex.test(animation!);
 
-    if (hasFadeAnimation) {
+    if (hasFadeAnimation && this._element.type == "Group") {
       this._children.forEach((child) => {
         child.style.opacity = "0";
       });
@@ -82,7 +81,7 @@ export default class MomoAnimator {
 
       this._children.forEach((child, index) => {
         const childAnimation =
-          animation || child.getAttribute("data-animation");
+          child.getAttribute("data-animation") || animation;
 
         child.style.animation = `momo-${childAnimation} ${curve} ${duration}ms ${
           offset * index
@@ -102,7 +101,7 @@ export default class MomoAnimator {
         child.style.removeProperty("opacity");
       });
 
-      this.run();
+      this.animate();
     }, duration! + delay! + childrenAnimationDuration + 100);
   }
 }
