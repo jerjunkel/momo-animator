@@ -68,13 +68,11 @@ export default class MomoAnimator {
   }
 
   animate() {
-    console.log(this.state);
     this._state = MomoAnimatorState.RUNNING;
     let option = this._options.next();
 
     if (option == null) {
       this._state = MomoAnimatorState.COMPLETED;
-      console.log(this.state);
       return;
     }
 
