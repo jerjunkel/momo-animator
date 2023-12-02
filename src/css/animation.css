@@ -6,7 +6,6 @@
     opacity: 1;
   }
 }
-
 @keyframes momo-fade-enter-right {
   from {
     opacity: 0;
@@ -17,7 +16,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-fade-enter-left {
   from {
     opacity: 0;
@@ -28,7 +26,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-fade-enter-top {
   from {
     opacity: 0;
@@ -39,7 +36,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-fade-enter-bottom {
   from {
     opacity: 0;
@@ -50,7 +46,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-fade-leave {
   from {
     opacity: 1;
@@ -59,7 +54,6 @@
     opacity: 0;
   }
 }
-
 @keyframes momo-fade-leave-right {
   from {
     opacity: 1;
@@ -70,7 +64,6 @@
     transform: translateX(50%);
   }
 }
-
 @keyframes momo-fade-leave-left {
   from {
     opacity: 1;
@@ -81,7 +74,6 @@
     transform: translateX(-50%);
   }
 }
-
 @keyframes momo-fade-leave-top {
   from {
     opacity: 1;
@@ -92,7 +84,6 @@
     transform: translateY(-50%);
   }
 }
-
 @keyframes momo-fade-leave-bottom {
   from {
     opacity: 1;
@@ -103,7 +94,6 @@
     transform: translateY(50%);
   }
 }
-
 @keyframes momo-slide-enter-right {
   from {
     transform: translateX(50%);
@@ -112,7 +102,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-slide-enter-left {
   from {
     transform: translateX(-50%);
@@ -121,7 +110,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-slide-enter-top {
   from {
     transform: translateY(-50%);
@@ -130,7 +118,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-slide-enter-bottom {
   from {
     transform: translateY(50%);
@@ -139,7 +126,6 @@
     transform: translate(0);
   }
 }
-
 @keyframes momo-slide-leave-right {
   from {
     transform: translate(0);
@@ -148,7 +134,6 @@
     transform: translateX(50%);
   }
 }
-
 @keyframes momo-slide-leave-left {
   from {
     transform: translate(0);
@@ -157,7 +142,6 @@
     transform: translateX(-50%);
   }
 }
-
 @keyframes momo-slide-leave-top {
   from {
     transform: translate(0);
@@ -166,7 +150,6 @@
     transform: translateY(-50%);
   }
 }
-
 @keyframes momo-slide-leave-bottom {
   from {
     transform: translate(0);
@@ -174,5 +157,4 @@
   to {
     transform: translateY(50%);
   }
-}
-/*# sourceMappingURL=animation.css.map */
+}/*# sourceMappingURL=animation.css.map */

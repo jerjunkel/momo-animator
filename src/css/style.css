@@ -24,36 +24,42 @@ body {
   padding: 4rem 0;
   width: 80vw;
   height: 90vh;
-  background-color: #c5edff;
+  background-color: rgb(197, 237, 255);
 }
-
 .section#fade {
-  background-color: #7a007a;
+  background-color: rgb(122, 0, 122);
   color: white;
 }
-
 .section#delay {
-  background-color: #ff993a;
+  background-color: rgb(255, 153, 58);
 }
-
 .section#duration {
   background-color: cornflowerblue;
 }
-
 .section__title {
   font-size: 5rem;
   text-align: center;
 }
-
 .section__items {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80%;
 }
-
 .section__items p {
   font-size: 2.5rem;
   margin: 2rem 0;
 }
-/*# sourceMappingURL=style.css.map */
+
+#box-group {
+  display: flex;
+  column-gap: 0.5rem;
+  padding: 1rem;
+}
+#box-group .box {
+  --size: 5rem;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 10px;
+  background-color: rgb(62, 142, 90);
+}/*# sourceMappingURL=style.css.map */

@@ -56,3 +56,16 @@ body {
     }
   }
 }
+
+#box-group {
+  display: flex;
+  column-gap: 0.5rem;
+  padding: 1rem;
+  .box {
+    --size: 5rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 10px;
+    background-color: rgb(62, 142, 90);
+  }
+}

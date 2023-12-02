@@ -1,4 +1,5 @@
 import { MomoAnimatorOptions } from "./MomoOptions";
+import { MomoAnimatorState } from "./MomoAnimatorState";
 import LinkedList from "./LinkedList";
 import MomoElement from "./MomoElement";
 
@@ -6,14 +7,23 @@ export default class MomoAnimator {
   private _element: MomoElement;
   private _options: LinkedList<MomoAnimatorOptions>;
   private _children: HTMLElement[] = [];
+  private _animationEnd = () => {
+    this.animationPrep();
+  };
 
   constructor(element: MomoElement) {
     this._element = element;
     this._options = new LinkedList<MomoAnimatorOptions>(element.options);
 
     if (element.type == "Group") {
-      const parent = this._element.element;
+      const parent = this.htmlElement;
       this._children = Array.from(parent.querySelectorAll(".momo"));
+      this._children[this._children.length - 1].addEventListener(
+        "animationend",
+        this._animationEnd
+      );
+    } else {
+      this.htmlElement.addEventListener("animationend", this._animationEnd);
     }
 
     // Prep for fade
@@ -47,6 +57,10 @@ export default class MomoAnimator {
     return this._element.element;
   }
 
+  get state(): MomoAnimatorState {
+    return this._state;
+  }
+
   then(options: MomoAnimatorOptions): MomoAnimator {
     this._options.add(options);
     return this;
@@ -54,7 +68,6 @@ export default class MomoAnimator {
 
   animate() {
     let option = this._options.next();
-    let timer: any;
 
     if (option == null) return;
 
@@ -91,17 +104,17 @@ export default class MomoAnimator {
       el.style.animation = `momo-${animation} ${curve} ${duration}ms ${delay}ms forwards`;
       console.log(el.style.animation);
     }
-    timer = setTimeout(() => {
-      clearTimeout(timer);
-      // Clean up code
-      this._element.element.style.removeProperty("animation");
-      this._element.element.style.removeProperty("opacity");
-      this._children.forEach((child) => {
-        child.style.removeProperty("animation");
-        child.style.removeProperty("opacity");
-      });
+  }
 
-      this.animate();
-    }, duration! + delay! + childrenAnimationDuration + 100);
+  private animationPrep() {
+    this.htmlElement.style.removeProperty("animation");
+    this.htmlElement.style.removeProperty("opacity");
+
+    this._children.forEach((child) => {
+      child.style.removeProperty("animation");
+      child.style.removeProperty("opacity");
+    });
+
+    this.animate();
   }
 }
