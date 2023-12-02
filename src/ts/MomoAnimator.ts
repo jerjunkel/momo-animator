@@ -7,6 +7,7 @@ export default class MomoAnimator {
   private _element: MomoElement;
   private _options: LinkedList<MomoAnimatorOptions>;
   private _children: HTMLElement[] = [];
+  private _state: MomoAnimatorState = MomoAnimatorState.READY;
   private _animationEnd = () => {
     this.animationPrep();
   };
@@ -67,16 +68,21 @@ export default class MomoAnimator {
   }
 
   animate() {
+    console.log(this.state);
+    this._state = MomoAnimatorState.RUNNING;
     let option = this._options.next();
 
-    if (option == null) return;
+    if (option == null) {
+      this._state = MomoAnimatorState.COMPLETED;
+      console.log(this.state);
+      return;
+    }
 
     const el = this._element.element;
     const animation = el.getAttribute("data-animation") || option.animation;
     const duration = option.duration || this._options.firstItem?.duration;
     const delay = option.delay || this._options.firstItem?.delay;
     const curve = option.curve || this._options.firstItem?.curve;
-    let childrenAnimationDuration = 0;
 
     // Prep for fade
     const fadeRegex = new RegExp(/^fade-enter/g);
@@ -90,7 +96,6 @@ export default class MomoAnimator {
 
     if (this._element.type == "Group" && option.staggerBy) {
       const offset = option.staggerBy;
-      childrenAnimationDuration = offset * this._children.length;
 
       this._children.forEach((child, index) => {
         const childAnimation =
