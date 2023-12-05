@@ -1,0 +1,46 @@
+@keyframes momo-scale-in {
+  from {
+    scale: 0;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@each $direction in $animation-directions {
+  @keyframes momo-scale-in-#{$direction} {
+    from {
+      @include animation-direction($direction);
+      scale: 0;
+    }
+
+    to {
+      transform: translate(0);
+      scale: 1;
+    }
+  }
+}
+
+@keyframes momo-scale-out {
+  from {
+    scale: 1;
+  }
+
+  to {
+    scale: 0;
+  }
+}
+@each $direction in $animation-directions {
+  @keyframes momo-scale-out-#{$direction} {
+    from {
+      transform: translate(0);
+      scale: 1;
+    }
+
+    to {
+      @include animation-direction($direction);
+      scale: 0;
+    }
+  }
+}

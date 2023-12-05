@@ -157,4 +157,100 @@
   to {
     transform: translateY(-50%);
   }
+}
+@keyframes momo-scale-in {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+@keyframes momo-scale-in-right {
+  from {
+    transform: translateX(50%);
+    scale: 0;
+  }
+  to {
+    transform: translate(0);
+    scale: 1;
+  }
+}
+@keyframes momo-scale-in-left {
+  from {
+    transform: translateX(-50%);
+    scale: 0;
+  }
+  to {
+    transform: translate(0);
+    scale: 1;
+  }
+}
+@keyframes momo-scale-in-up {
+  from {
+    transform: translateY(50%);
+    scale: 0;
+  }
+  to {
+    transform: translate(0);
+    scale: 1;
+  }
+}
+@keyframes momo-scale-in-down {
+  from {
+    transform: translateY(-50%);
+    scale: 0;
+  }
+  to {
+    transform: translate(0);
+    scale: 1;
+  }
+}
+@keyframes momo-scale-out {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0;
+  }
+}
+@keyframes momo-scale-out-right {
+  from {
+    transform: translate(0);
+    scale: 1;
+  }
+  to {
+    transform: translateX(50%);
+    scale: 0;
+  }
+}
+@keyframes momo-scale-out-left {
+  from {
+    transform: translate(0);
+    scale: 1;
+  }
+  to {
+    transform: translateX(-50%);
+    scale: 0;
+  }
+}
+@keyframes momo-scale-out-up {
+  from {
+    transform: translate(0);
+    scale: 1;
+  }
+  to {
+    transform: translateY(50%);
+    scale: 0;
+  }
+}
+@keyframes momo-scale-out-down {
+  from {
+    transform: translate(0);
+    scale: 1;
+  }
+  to {
+    transform: translateY(-50%);
+    scale: 0;
+  }
 }/*# sourceMappingURL=animation.css.map */
