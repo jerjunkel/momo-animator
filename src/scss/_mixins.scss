@@ -6,10 +6,10 @@
   @if $direction == "left" {
     transform: translateX(-#{$transition-offset});
   }
-  @if $direction == "bottom" {
+  @if $direction == "up" {
     transform: translateY($transition-offset);
   }
-  @if $direction == "top" {
+  @if $direction == "down" {
     transform: translateY(-#{$transition-offset});
   }
 }

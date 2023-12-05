@@ -1,5 +1,5 @@
 @each $direction in $animation-directions {
-  @keyframes momo-slide-enter-#{$direction} {
+  @keyframes momo-slide-in-#{$direction} {
     from {
       @include animation-direction($direction);
     }
@@ -10,7 +10,7 @@
   }
 }
 @each $direction in $animation-directions {
-  @keyframes momo-slide-leave-#{$direction} {
+  @keyframes momo-slide-out-#{$direction} {
     from {
       transform: translate(0);
     }

@@ -83,8 +83,8 @@ export default class MomoAnimator {
     const curve = option.curve || this._options.firstItem?.curve;
 
     // Prep for fade
-    const fadeRegex = new RegExp(/^fade-enter/g);
-    const hasFadeAnimation = fadeRegex.test(animation!);
+    const fadeRegex = new RegExp(/^fade-in/g);
+    const hasFadeAnimation = fadeRegex.test(this.parseAnimation(animation!));
 
     if (hasFadeAnimation && this._element.type == "Group") {
       this._children.forEach((child) => {
@@ -98,8 +98,10 @@ export default class MomoAnimator {
       this._children.forEach((child, index) => {
         const childAnimation =
           child.getAttribute("data-animation") || animation;
+        const parsedAnimation = this.parseAnimation(childAnimation!);
+        console.log(parsedAnimation);
 
-        child.style.animation = `momo-${childAnimation} ${curve} ${duration}ms ${
+        child.style.animation = `momo-${parsedAnimation} ${curve} ${duration}ms ${
           offset * index
         }ms forwards`;
       });
@@ -119,5 +121,9 @@ export default class MomoAnimator {
     });
 
     this.animate();
+  }
+
+  private parseAnimation(animation: string): string {
+    return animation.split(".").join("-");
   }
 }

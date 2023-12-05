@@ -1,4 +1,4 @@
-@keyframes momo-fade-enter {
+@keyframes momo-fade-in {
   from {
     opacity: 0;
   }
@@ -6,7 +6,7 @@
     opacity: 1;
   }
 }
-@keyframes momo-fade-enter-right {
+@keyframes momo-fade-in-right {
   from {
     opacity: 0;
     transform: translateX(50%);
@@ -16,7 +16,7 @@
     transform: translate(0);
   }
 }
-@keyframes momo-fade-enter-left {
+@keyframes momo-fade-in-left {
   from {
     opacity: 0;
     transform: translateX(-50%);
@@ -26,17 +26,7 @@
     transform: translate(0);
   }
 }
-@keyframes momo-fade-enter-top {
-  from {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-@keyframes momo-fade-enter-bottom {
+@keyframes momo-fade-in-up {
   from {
     opacity: 0;
     transform: translateY(50%);
@@ -46,7 +36,17 @@
     transform: translate(0);
   }
 }
-@keyframes momo-fade-leave {
+@keyframes momo-fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes momo-fade-out {
   from {
     opacity: 1;
   }
@@ -54,7 +54,7 @@
     opacity: 0;
   }
 }
-@keyframes momo-fade-leave-right {
+@keyframes momo-fade-out-right {
   from {
     opacity: 1;
     transform: translate(0);
@@ -64,7 +64,7 @@
     transform: translateX(50%);
   }
 }
-@keyframes momo-fade-leave-left {
+@keyframes momo-fade-out-left {
   from {
     opacity: 1;
     transform: translate(0);
@@ -74,17 +74,7 @@
     transform: translateX(-50%);
   }
 }
-@keyframes momo-fade-leave-top {
-  from {
-    opacity: 1;
-    transform: translate(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-}
-@keyframes momo-fade-leave-bottom {
+@keyframes momo-fade-out-up {
   from {
     opacity: 1;
     transform: translate(0);
@@ -94,7 +84,17 @@
     transform: translateY(50%);
   }
 }
-@keyframes momo-slide-enter-right {
+@keyframes momo-fade-out-down {
+  from {
+    opacity: 1;
+    transform: translate(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+}
+@keyframes momo-slide-in-right {
   from {
     transform: translateX(50%);
   }
@@ -102,7 +102,7 @@
     transform: translate(0);
   }
 }
-@keyframes momo-slide-enter-left {
+@keyframes momo-slide-in-left {
   from {
     transform: translateX(-50%);
   }
@@ -110,15 +110,7 @@
     transform: translate(0);
   }
 }
-@keyframes momo-slide-enter-top {
-  from {
-    transform: translateY(-50%);
-  }
-  to {
-    transform: translate(0);
-  }
-}
-@keyframes momo-slide-enter-bottom {
+@keyframes momo-slide-in-up {
   from {
     transform: translateY(50%);
   }
@@ -126,7 +118,15 @@
     transform: translate(0);
   }
 }
-@keyframes momo-slide-leave-right {
+@keyframes momo-slide-in-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes momo-slide-out-right {
   from {
     transform: translate(0);
   }
@@ -134,7 +134,7 @@
     transform: translateX(50%);
   }
 }
-@keyframes momo-slide-leave-left {
+@keyframes momo-slide-out-left {
   from {
     transform: translate(0);
   }
@@ -142,19 +142,19 @@
     transform: translateX(-50%);
   }
 }
-@keyframes momo-slide-leave-top {
-  from {
-    transform: translate(0);
-  }
-  to {
-    transform: translateY(-50%);
-  }
-}
-@keyframes momo-slide-leave-bottom {
+@keyframes momo-slide-out-up {
   from {
     transform: translate(0);
   }
   to {
     transform: translateY(50%);
+  }
+}
+@keyframes momo-slide-out-down {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translateY(-50%);
   }
 }/*# sourceMappingURL=animation.css.map */
