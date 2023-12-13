@@ -50,16 +50,4 @@ body {
   font-size: 2.5rem;
   margin: 2rem 0;
 }
-
-#box-group {
-  display: flex;
-  column-gap: 0.5rem;
-  padding: 1rem;
-}
-#box-group .box {
-  --size: 5rem;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 10px;
-  background-color: rgb(62, 142, 90);
-}/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -1,3 +1,3 @@
-import Momo from "./Momo";
+import Momo from "./momo.js";
 
 export default new Momo();

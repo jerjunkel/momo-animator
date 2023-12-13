@@ -1,7 +1,7 @@
-import { MomoAnimatorOptions } from "./MomoOptions";
-import { MomoAnimatorState } from "./MomoAnimatorState";
-import LinkedList from "./LinkedList";
-import MomoElement from "./MomoElement";
+import { MomoAnimatorOptions } from "./MomoOptions.js";
+import { MomoAnimatorState } from "./MomoAnimatorState.js";
+import LinkedList from "./LinkedList.js";
+import MomoElement from "./MomoElement.js";
 
 export default class MomoAnimator {
   private _element: MomoElement;

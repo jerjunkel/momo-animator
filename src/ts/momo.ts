@@ -1,8 +1,8 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
 import MomoObserver from "./MomoObserver.js";
-import { MomoAnimatorOptions, MomoGlobalOptions } from "./MomoOptions";
-import { MomoElementType } from "./MomoElementType";
+import { MomoAnimatorOptions, MomoGlobalOptions } from "./MomoOptions.js";
+import { MomoElementType } from "./MomoElementType.js";
 
 export default class Momo {
   private _instance: Momo | null = null;

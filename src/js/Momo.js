@@ -1,7 +1,7 @@
 import MomoAnimator from "./MomoAnimator.js";
 import MomoElement from "./MomoElement.js";
 import MomoObserver from "./MomoObserver.js";
-import { MomoElementType } from "./MomoElementType";
+import { MomoElementType } from "./MomoElementType.js";
 export default class Momo {
     constructor() {
         this._instance = null;
@@ -9,6 +9,8 @@ export default class Momo {
             duration: 1000,
             delay: 0,
             curve: "linear",
+            animation: "fade-enter-bottom",
+            staggerBy: 100,
             useIntersection: true,
             animatePage: false,
         };
@@ -31,32 +33,66 @@ export default class Momo {
         this._options.useIntersection = validOptions.useIntersection;
         if (options.animatePage) {
             const elements = Array.from(document.querySelectorAll(".momo"));
-            const momoElement = elements.map((element) => {
-                return new MomoAnimator(new MomoElement(element, validOptions, MomoElementType.Item, Momo.generateUUID()));
-            });
-            momoElement.forEach((el) => this._observer.add(el));
-            console.log(momoElement);
+            const momoGroupItems = elements
+                .filter((el) => el.classList.contains("group"))
+                .forEach((el) => this.createAnimatableGroup(el));
+            const momoItems = elements
+                .filter((el) => {
+                const parent = el.parentNode;
+                if (el.classList.contains("group") ||
+                    (parent && parent.classList.contains("group")))
+                    return false;
+                return true;
+            })
+                .forEach((el) => this.createAnimatable(el));
+            // const momoElements = [...momoGroupItems, ...momoItems];
+            // momoElements
+            //   .map((el) => new MomoAnimator(el))
+            //   .forEach((el) => this._observer.add(el));
+            // const momoElement = elements.map((element) => {
+            //   return new MomoAnimator(
+            //     new MomoElement(
+            //       element as HTMLElement,
+            //       validOptions,
+            //       MomoElementType.Item,
+            //       Momo.generateUUID()
+            //     )
+            //   );
+            // });
+            // momoElement.forEach((el) => this._observer.add(el));
+            // console.log(momoElement);
         }
     }
     getGlobalOptions() {
         return this._options;
     }
-    createAnimatable(selector, options) {
-        const el = document.querySelector(selector);
-        if (!el)
-            throw Error(`No element found with selector ${selector}`);
+    createAnimatable(target, options) {
+        let el;
+        if (typeof target == "string") {
+            el = document.querySelector(target);
+            if (!el)
+                throw Error(`No element found with selector ${target}`);
+        }
+        else {
+            el = target;
+        }
         if (!el.classList.contains("momo"))
-            throw Error(`Element with selector ${selector} is missing Momo class`);
+            throw Error(`Element is missing Momo class`);
         const validOptions = options == null ? this._options : this._checkAnimatorOptions(options);
         const momoAnimator = new MomoAnimator(new MomoElement(el, validOptions, MomoElementType.Item, Momo.generateUUID()));
         this._observer.add(momoAnimator);
         return momoAnimator;
     }
-    createAnimatableGroup(selector, options) {
-        const el = document.querySelector(selector);
-        if (!el)
-            throw Error(`No element found with selector ${selector}`);
-        const momoElements = Array.from(el.querySelectorAll(".momo"));
+    createAnimatableGroup(target, options) {
+        let el;
+        if (typeof target == "string") {
+            el = document.querySelector(target);
+            if (!el)
+                throw Error(`No element found with selector ${target}`);
+        }
+        else {
+            el = target;
+        }
         let validOptions = options == null ? this._options : this._checkAnimatorOptions(options);
         if (options === null || options === void 0 ? void 0 : options.staggerBy) {
             const staggerBy = options === null || options === void 0 ? void 0 : options.staggerBy;
@@ -76,7 +112,7 @@ export default class Momo {
         return uuid;
     }
     _checkGlobalOptions(options) {
-        let { duration, delay, curve, animation, animatePage, useIntersection, } = options;
+        let { duration, delay, curve, animation, animatePage, useIntersection, staggerBy, } = options;
         if (!duration)
             duration = this._options.duration;
         if (!delay)
@@ -87,6 +123,8 @@ export default class Momo {
             useIntersection = this._options.useIntersection;
         if (!curve)
             curve = this._options.curve;
+        if (!staggerBy)
+            staggerBy = this._options.staggerBy;
         return { duration, delay, curve, animation, useIntersection, animatePage };
     }
     _checkAnimatorOptions(options) {
@@ -100,3 +138,4 @@ export default class Momo {
         return { duration, delay, curve, animation };
     }
 }
+//# sourceMappingURL=momo.js.map
