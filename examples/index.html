@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momo Animations</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../src/css/style.css" />
+    <link rel="stylesheet" href="../../src/css/animation.css" />
+    <script src="../../dist/momo.umd.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <ul class="nav__links links">
+          <li class="nav__link">Page 1</li>
+          <li class="nav__link">Page 2</li>
+          <li class="nav__link">Page 3</li>
+        </ul>
+      </nav>
+      <div class="header__content">
+        <div class="header__text">
+          <h1 class="header__cta momo">Come try Momo Animations</h1>
+          <p class="header__description momo">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            corrupti nisi reprehenderit, illo quis voluptate placeat eum. Magni,
+            fugit. Labore architecto obcaecati enim, eius nemo ipsam nisi.
+            Voluptates, non illum.
+          </p>
+          <a
+            href=""
+            class="btn btn__primary momo"
+            data-animation="fade-enter-bottom"
+            >Get Momo</a
+          >
+        </div>
+        <img
+          src="../../momo-image.png"
+          alt="momo avatar image"
+          class="header__img momo"
+          data-animation="fade-enter"
+        />
+      </div>
+    </header>
+    <div class="container"></div>
+
+    <script>
+      Momo.setGlobalOptions({
+        duration: 1000,
+        // animatePage: true,
+      });
+
+      const momoImage = Momo.createAnimatable(".header__img", {
+        curve: "ease-in-out",
+      });
+      momoImage
+        .then({ duration: 2000, animation: "fade-leave" })
+        .then({ duration: 2000, animation: "fade-enter-top" })
+        .then({ delay: 300, duration: 2000, animation: "fade-leave-top" })
+        .then({
+          duration: 2000,
+          animation: "fade-enter-right",
+          curve: "cubic-bezier(0.83, 0, 0.17, 1)",
+        });
+      // .run();
+
+      const headerText = Momo.createAnimatableGroup(".header__text", {
+        curve: "ease-in-out",
+        animation: "fade-enter-right",
+        duration: 1500,
+        staggerBy: 400,
+      });
+      headerText
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-leave-right",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-enter-top",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-leave-top",
+          duration: 1500,
+          staggerBy: 400,
+        })
+        .then({
+          curve: "ease-in-out",
+          animation: "fade-enter-bottom",
+          duration: 1500,
+          staggerBy: 400,
+        });
+      // .run();
+    </script>
+  </body>
+</html>
