@@ -1,20 +1,15 @@
-@keyframes momo-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
+// @keyframes momo-fade-in {
+//   to {
+//     opacity: 1;
+//   }
+// }
 
 @each $direction in $animation-directions {
   @keyframes momo-fade-in-#{$direction} {
     from {
       opacity: 0;
-      @include animation-direction($direction);
+      @include animation-directions("in", $direction);
     }
-
     to {
       opacity: 1;
       transform: translate(0);
@@ -23,10 +18,6 @@
 }
 
 @keyframes momo-fade-out {
-  from {
-    opacity: 1;
-  }
-
   to {
     opacity: 0;
   }
@@ -34,14 +25,9 @@
 
 @each $direction in $animation-directions {
   @keyframes momo-fade-out-#{$direction} {
-    from {
-      opacity: 1;
-      transform: translate(0);
-    }
-
     to {
       opacity: 0;
-      @include animation-direction($direction);
+      @include animation-directions("out", $direction);
     }
   }
 }

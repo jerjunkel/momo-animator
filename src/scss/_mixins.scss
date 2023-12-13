@@ -13,3 +13,25 @@
     transform: translateY(-#{$transition-offset});
   }
 }
+
+// Directions mixin
+@mixin animation-directions($action, $direction) {
+  @if $direction == "right" {
+    transform: translateX($transition-offset);
+  }
+  @if $direction == "left" {
+    transform: translateX(-#{$transition-offset});
+  }
+  @if $action == "in" and $direction == "up" {
+    transform: translateY(-#{$transition-offset});
+  }
+  @if $action == "out" and $direction == "up" {
+    transform: translateY(#{$transition-offset});
+  }
+  @if $action == "in" and $direction == "down" {
+    transform: translateY(-#{$transition-offset});
+  }
+  @if $action == "out" and $direction == "down" {
+    transform: translateY(#{$transition-offset});
+  }
+}

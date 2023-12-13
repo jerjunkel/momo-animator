@@ -92,9 +92,18 @@ export default class MomoAnimator {
         // // Prep for fade
         // const fadeRegex = new RegExp(/^fade-in/g);
         // const hasFadeAnimation = fadeRegex.test(this.parseAnimation(animation!));
-        if (momoAnimation.fades && this._element.type == "Group") {
+        if (momoAnimation.fades &&
+            momoAnimation.isEntering &&
+            this._element.type == "Group") {
             this._children.forEach((child) => {
                 child.style.opacity = "0";
+            });
+        }
+        if (momoAnimation.fades &&
+            momoAnimation.isLeaving &&
+            this._element.type == "Group") {
+            this._children.forEach((child) => {
+                child.style.opacity = "1";
             });
         }
         if (this._element.type == "Group" && option.staggerBy) {
