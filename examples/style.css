@@ -94,7 +94,7 @@ ul.links {
   padding: 1rem;
 }
 #box-group .box {
-  --size: 5rem;
+  --size: 8rem;
   width: var(--size);
   height: var(--size);
   border-radius: 10px;

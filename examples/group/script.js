@@ -2,12 +2,13 @@ import Momo from "../../src/js/index.js";
 
 Momo.setGlobalOptions({
   curve: "ease",
-  duration: 1000,
+  duration: 500,
 });
+
 const boxGroupAnimator = Momo.createAnimatableGroup("#box-group", {
-  animation: "scale.in.up",
+  animation: "slide.in.down",
   staggerBy: 100,
-  curve: "cubic-bezier(0.85, 0, 0.15, 1)",
+  curve: "cubic-bezier(0.65, 0, 0.35, 1)",
 });
 
 // boxGroupAnimator
